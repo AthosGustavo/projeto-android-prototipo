@@ -1,26 +1,21 @@
 package projeto.piloto.projeto_off_web.Model.Entidade;
 
 import androidx.room.Entity;
-import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
-@Entity(tableName = "turmas")
-public class Turma {
+@Entity(tableName = "login")
+public class Login {
 
   @PrimaryKey
   private Integer id;
-  private String nome;
+  private String email;
+  private String senha;
   private Integer professor;
 
-
-  public Turma(String nome, Integer professor) {
-    this.nome = nome;
+  public Login(String email, String senha, Integer professor) {
+    this.email = email;
+    this.senha = senha;
     this.professor = professor;
-  }
-
-  @Ignore
-  public Turma() {
-
   }
 
   public Integer getId() {
@@ -31,12 +26,20 @@ public class Turma {
     this.id = id;
   }
 
-  public String getNome() {
-    return nome;
+  public String getEmail() {
+    return email;
   }
 
-  public void setNome(String nome) {
-    this.nome = nome;
+  public void setEmail(String email) {
+    this.email = email;
+  }
+
+  public String getSenha() {
+    return senha;
+  }
+
+  public void setSenha(String senha) {
+    this.senha = senha;
   }
 
   public Integer getProfessor() {
@@ -46,5 +49,4 @@ public class Turma {
   public void setProfessor(Integer professor) {
     this.professor = professor;
   }
-
 }

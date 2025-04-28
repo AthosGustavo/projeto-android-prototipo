@@ -19,6 +19,12 @@ public class Professor {
   }
 
   @Ignore
+  public Professor(String nome, String disciplina) {
+    this.nome = nome;
+    this.disciplina = disciplina;
+  }
+
+  @Ignore
   public Professor() {
 
   }

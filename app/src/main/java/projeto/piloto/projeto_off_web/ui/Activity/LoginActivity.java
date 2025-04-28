@@ -1,4 +1,4 @@
-package projeto.piloto.projeto_off_web.Activity;
+package projeto.piloto.projeto_off_web.ui.Activity;
 
 import android.os.Bundle;
 import android.view.View;

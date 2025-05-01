@@ -2,13 +2,13 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/turma_activity"
+    android:id="@+id/lista_alunos_activity"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.Activity.TurmaActivity">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler_view_lista_turma"
+        android:id="@+id/recycler_view_lista_alunos"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/cardview_shadow_end_color"
@@ -17,6 +17,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:listitem="@layout/item_turma" />
+        tools:listitem="@layout/item_aluno" />
 
 </RelativeLayout>

@@ -10,11 +10,11 @@ import projeto.piloto.projeto_off_web.Model.Entidade.Professor;
 
 public class TurmaViewModel extends ViewModel {
 
-  private final MutableLiveData<ExecutorService> executorService = new MutableLiveData<>();
+  private final ExecutorService executorService = Executors.newCachedThreadPool();
   private final MutableLiveData<Professor> professor = new MutableLiveData<>();
 
   public ExecutorService getExecutorService(){
-    return Executors.newCachedThreadPool();
+    return executorService;
   }
 
   public Professor professor(){

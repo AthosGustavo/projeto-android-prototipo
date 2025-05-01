@@ -33,7 +33,7 @@ import projeto.piloto.projeto_off_web.databinding.FragmentListaTurmaBinding;
 public class ListaTurmaFragment extends Fragment {
   
   private FragmentListaTurmaBinding fragmentListaTurmaBinding;
-  private OnCriarTurmaListener onCriarTurmaListener;
+  private IListaTurmaListener iListaTurmaListener;
   private TurmaViewModel turmaViewModel;
   private OffWebDb offWebDb;
   ListaTurmaAdapter listaTurmaAdapter;
@@ -59,7 +59,7 @@ public class ListaTurmaFragment extends Fragment {
   @Override
   public void onAttach(@NonNull Context context) {
     super.onAttach(context);
-    onCriarTurmaListener = (OnCriarTurmaListener) context;
+    iListaTurmaListener = (IListaTurmaListener) context;
   }
 
   @Override
@@ -91,7 +91,12 @@ public class ListaTurmaFragment extends Fragment {
     RecyclerView recyclerView = fragmentListaTurmaBinding.recyclerViewListaTurma;
 
     turmaViewModel.getExecutorService().execute(() -> {
-      listaTurmaAdapter = new ListaTurmaAdapter(getContext(),offWebDb.TurmaDao().buscarTurmas());
+      listaTurmaAdapter = new ListaTurmaAdapter(getContext(), offWebDb.turmaDao().buscarTurmas(), new ListaTurmaAdapter.OnItemClickListener() {
+        @Override
+        public void onItemClick(Turma turma) {
+          iListaTurmaListener.clicarTurma(turma);
+        }
+      });
 
       requireActivity().runOnUiThread(() -> {
         recyclerView.setAdapter(listaTurmaAdapter);
@@ -99,21 +104,20 @@ public class ListaTurmaFragment extends Fragment {
       });
     });
 
-
-
   }
 
   private void configuraBtnCriarTurma(){
     fragmentListaTurmaBinding.btnCriarTurma.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View view) {
-        onCriarTurmaListener.onCriarTurmaClicked();
+        iListaTurmaListener.criarTurma();
       }
     });
   }
 
-  public interface OnCriarTurmaListener {
-    void onCriarTurmaClicked();
+  public interface IListaTurmaListener {
+    void clicarTurma(Turma turma);
+    void criarTurma();
   }
 
 

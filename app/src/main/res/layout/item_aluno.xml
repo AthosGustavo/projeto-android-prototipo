@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <TextView
+        android:id="@+id/nome_aluno"
+        android:singleLine="true"
+        android:ellipsize="marquee"
+        android:textColor="@color/design_default_color_primary_variant"
+        android:textSize="16sp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        tools:text="Jogar o lixo quando chegar do trabalho" />
+</com.google.android.material.card.MaterialCardView>

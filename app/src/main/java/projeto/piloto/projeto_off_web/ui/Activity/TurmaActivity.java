@@ -13,17 +13,21 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
 
 import projeto.piloto.projeto_off_web.Model.Entidade.Professor;
+import projeto.piloto.projeto_off_web.Model.Entidade.Turma;
 import projeto.piloto.projeto_off_web.R;
 import projeto.piloto.projeto_off_web.ViewModel.TurmaViewModel;
 import projeto.piloto.projeto_off_web.databinding.ActivityTurmaBinding;
 import projeto.piloto.projeto_off_web.ui.Fragment.Turma.CriarTurmaFragment;
 import projeto.piloto.projeto_off_web.ui.Fragment.Turma.ListaTurmaFragment;
+import projeto.piloto.projeto_off_web.ui.Fragment.Turma.ListaTurmaFragment.IListaTurmaListener;
+import projeto.piloto.projeto_off_web.ui.Fragment.Turma.TurmaFragment;
 
-public class TurmaActivity extends AppCompatActivity implements ListaTurmaFragment.OnCriarTurmaListener{
+public class TurmaActivity extends AppCompatActivity implements IListaTurmaListener{
 
   private ActivityTurmaBinding activityTurmaBinding;
   private CriarTurmaFragment criarTurmaFragment;
   private ListaTurmaFragment listaTurmaFragment;
+  private TurmaFragment turmaFragment;
   private TurmaViewModel turmaViewModel;
   
   
@@ -42,6 +46,7 @@ public class TurmaActivity extends AppCompatActivity implements ListaTurmaFragme
     turmaViewModel = new ViewModelProvider(this).get(TurmaViewModel.class);
     criarTurmaFragment = new CriarTurmaFragment();
     listaTurmaFragment = new ListaTurmaFragment();
+    turmaFragment = new TurmaFragment();
     mockProfessor();
   }
 
@@ -58,13 +63,19 @@ public class TurmaActivity extends AppCompatActivity implements ListaTurmaFragme
   }
 
   @Override
-  public void onCriarTurmaClicked() {
+  public void criarTurma() {
     setFragment(criarTurmaFragment);
+  }
+
+  @Override
+  public void clicarTurma(Turma turma) {
+    setFragment(turmaFragment);
   }
 
   public void mockProfessor(){
     Professor professor = new Professor(1,"Alberto Silva","Direito Administrativo");
     turmaViewModel.setProfessor(professor);
   }
+
 
 }

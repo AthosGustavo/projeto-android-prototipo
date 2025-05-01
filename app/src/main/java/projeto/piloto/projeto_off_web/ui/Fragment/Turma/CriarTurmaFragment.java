@@ -78,8 +78,8 @@ public class CriarTurmaFragment extends Fragment {
         Professor professor = turmaViewModel.professor();
 
         turmaViewModel.getExecutorService().execute(() -> {
-          offWebDb.TurmaDao().inserir(
-                  new Turma("TURMA DE TESTE",professor.getId())
+          offWebDb.turmaDao().inserir(
+                  new Turma(fragmentCriarTurmaBinding.nomeTurma.getText().toString(),professor.getId())
           );
         });
 

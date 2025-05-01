@@ -17,10 +17,16 @@ import projeto.piloto.projeto_off_web.R;
 public class ListaTurmaAdapter extends RecyclerView.Adapter<ListaTurmaAdapter.ViewHolder>{
   private Context context;
   private List<Turma> listaTurmas;
+  private OnItemClickListener listener;
 
-  public ListaTurmaAdapter(Context context, List<Turma> listaTurmas) {
+  public ListaTurmaAdapter(Context context, List<Turma> listaTurmas, OnItemClickListener listener) {
     this.context = context;
     this.listaTurmas = listaTurmas;
+    this.listener = listener;
+  }
+
+  public interface OnItemClickListener {
+    void onItemClick(Turma turma);
   }
 
   @NonNull
@@ -33,7 +39,9 @@ public class ListaTurmaAdapter extends RecyclerView.Adapter<ListaTurmaAdapter.Vi
 
   @Override
   public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-    holder.vincula(listaTurmas.get(position));
+    Turma turma = listaTurmas.get(position);
+    holder.vincula(turma);
+    holder.bindListener(turma,listener);
   }
 
   @Override
@@ -52,6 +60,15 @@ public class ListaTurmaAdapter extends RecyclerView.Adapter<ListaTurmaAdapter.Vi
 
     public void vincula(Turma turma){
       this.nome.setText(turma.getNome());
+    }
+
+    public void bindListener(final Turma turma, final OnItemClickListener listener){
+      itemView.setOnClickListener(new View.OnClickListener(){
+        @Override
+        public void onClick(View view) {
+          listener.onItemClick(turma);
+        }
+      });
     }
 
   }

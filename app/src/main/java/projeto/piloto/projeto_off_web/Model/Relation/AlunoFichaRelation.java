@@ -16,4 +16,19 @@ public class AlunoFichaRelation {
   )
   private Ficha ficha;
 
+  public Aluno getAluno() {
+    return aluno;
+  }
+
+  public void setAluno(Aluno aluno) {
+    this.aluno = aluno;
+  }
+
+  public Ficha getFicha() {
+    return ficha;
+  }
+
+  public void setFicha(Ficha ficha) {
+    this.ficha = ficha;
+  }
 }

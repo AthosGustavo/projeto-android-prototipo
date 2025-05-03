@@ -8,27 +8,62 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 
+import projeto.piloto.projeto_off_web.Consumer.Callback;
+import projeto.piloto.projeto_off_web.Database.OffWebDb;
 import projeto.piloto.projeto_off_web.Model.Entidade.Aluno;
+import projeto.piloto.projeto_off_web.Model.Entidade.Ficha;
+import projeto.piloto.projeto_off_web.Model.Relation.AlunoFichaRelation;
 import projeto.piloto.projeto_off_web.R;
+import projeto.piloto.projeto_off_web.ViewModel.TurmaViewModel;
+import projeto.piloto.projeto_off_web.databinding.ActivityAlunoBinding;
 
 public class AlunoActivity extends AppCompatActivity {
+
+  private Aluno alunoClicado;
+  private ActivityAlunoBinding activityAlunoBinding;
+  private TurmaViewModel turmaViewModel;
+  private OffWebDb offWebDb;
+  private Ficha fichaAluno;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     EdgeToEdge.enable(this);
-    setContentView(R.layout.activity_aluno);
+
+    activityAlunoBinding = ActivityAlunoBinding.inflate(getLayoutInflater());
+
+    setContentView(activityAlunoBinding.getRoot());
     ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.aluno_activity), (v, insets) -> {
       Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
       v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
       return insets;
     });
 
-    Aluno aluno = (Aluno) getIntent().getSerializableExtra("aluno");
-    TextView nomeAluno = findViewById(R.id.nome_aluno);
-    nomeAluno.setText(aluno.getNome());
+    offWebDb = OffWebDb.getInstance(this);
+    turmaViewModel = new ViewModelProvider(this).get(TurmaViewModel.class);
+    this.alunoClicado = (Aluno) getIntent().getSerializableExtra("aluno");
+    buscarFicha(alunoClicado);
+
+  }
+
+  private void buscarFicha(Aluno aluno) {
+    offWebDb.fichaDao().buscarFichaPorAluno(aluno.getId()).observe(this, new Observer<Ficha>() {
+      @Override
+      public void onChanged(Ficha ficha) {
+        fichaAluno = ficha;
+        exibirInfoAluno(aluno);
+      }
+    });
+  }
 
 
+  private void exibirInfoAluno(Aluno aluno) {
+    activityAlunoBinding.nomeAluno.setText(aluno.getNome());
+    activityAlunoBinding.curso.setText(aluno.getCurso());
+    activityAlunoBinding.horasUsoInternetDia.setText(fichaAluno.getHorasUsoInternetDia().toString());
+    activityAlunoBinding.descricao.setText(fichaAluno.getDescricao());
   }
 }

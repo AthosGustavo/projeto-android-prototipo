@@ -1,10 +1,8 @@
 package projeto.piloto.projeto_off_web.ui.Fragment.Turma;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -14,13 +12,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import projeto.piloto.projeto_off_web.Adapter.ListaAlunosAdapter;
 import projeto.piloto.projeto_off_web.Database.OffWebDb;
 import projeto.piloto.projeto_off_web.Model.Entidade.Aluno;
-import projeto.piloto.projeto_off_web.ViewModel.TurmaViewModel;
+import projeto.piloto.projeto_off_web.ViewModel.ViewModel;
 import projeto.piloto.projeto_off_web.databinding.FragmentTurmaBinding;
 import projeto.piloto.projeto_off_web.ui.Activity.AlunoActivity;
 
@@ -31,7 +26,7 @@ public class TurmaFragment extends Fragment{
   private static final String ARG_PARAM2 = "param2";
 
   private FragmentTurmaBinding fragmentTurmaBinding;
-  private TurmaViewModel turmaViewModel;
+  private ViewModel viewModel;
   private ListaAlunosAdapter listaAlunosAdapter;
   private OffWebDb offWebDb;
 
@@ -68,7 +63,7 @@ public class TurmaFragment extends Fragment{
       mParam1 = getArguments().getString(ARG_PARAM1);
       mParam2 = getArguments().getString(ARG_PARAM2);
     }
-    turmaViewModel = new ViewModelProvider(requireActivity()).get(TurmaViewModel.class);
+    viewModel = new ViewModelProvider(requireActivity()).get(ViewModel.class);
     offWebDb = OffWebDb.getInstance(getContext());
   }
 
@@ -85,7 +80,7 @@ public class TurmaFragment extends Fragment{
   private void configuraRecyclerView() {
     RecyclerView recyclerView = fragmentTurmaBinding.recyclerViewListaAlunos;
 
-    turmaViewModel.getExecutorService().execute(() -> {
+    viewModel.getExecutorService().execute(() -> {
       listaAlunosAdapter = new ListaAlunosAdapter(getContext(), offWebDb.turmaAlunoDao().buscarAlunos(), new ListaAlunosAdapter.OnItemClickListener() {
         @Override
         public void onItemClick(Aluno aluno) {

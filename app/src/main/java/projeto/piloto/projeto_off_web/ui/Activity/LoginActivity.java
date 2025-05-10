@@ -8,18 +8,23 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.google.android.material.snackbar.Snackbar;
 
 import projeto.piloto.projeto_off_web.Database.FirebaseAutenticacao;
 import projeto.piloto.projeto_off_web.R;
 import projeto.piloto.projeto_off_web.databinding.ActivityLoginBinding;
+import projeto.piloto.projeto_off_web.databinding.FragmentProfessorLoginBinding;
+import projeto.piloto.projeto_off_web.ui.Fragment.Login.AlunoCadastroFragment;
+import projeto.piloto.projeto_off_web.ui.Fragment.Login.ProfessorLoginFragment;
 
 public class LoginActivity extends AppCompatActivity {
 
   private ActivityLoginBinding activityLoginBinding;
-  private FirebaseAutenticacao firebaseAutenticacaoAuth;
-  private boolean cadastro = false;
+  private AlunoCadastroFragment alunoCadastroFragment;
+  private ProfessorLoginFragment professorLoginFragment;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -29,57 +34,43 @@ public class LoginActivity extends AppCompatActivity {
 
     EdgeToEdge.enable(this);
     setContentView(activityLoginBinding.getRoot());
-    ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
+    ViewCompat.setOnApplyWindowInsetsListener(findViewById(activityLoginBinding.activityLogin.getId()), (v, insets) -> {
       Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
       v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
       return insets;
     });
 
-    clickAindaNaoTemConta();
-    configuraBtnEntrarCadastrar();
-    firebaseAutenticacaoAuth = new FirebaseAutenticacao(activityLoginBinding);
+    alunoCadastroFragment = new AlunoCadastroFragment();
+    professorLoginFragment = new ProfessorLoginFragment();
+    activityLoginBinding.btnInterfaceAluno.setOnClickListener(listener);
+    activityLoginBinding.btnInterfaceProfessor.setOnClickListener(listener);
 
   }
 
-  private void configuraBtnEntrarCadastrar() {
-    activityLoginBinding.btnEntrarCadastrarEntrar.setOnClickListener(new View.OnClickListener() {
-      @Override
-      public void onClick(View view) {
-        String inputConfirmarSenha = activityLoginBinding.inputConfirmarSenha.getText().toString();
-        String inputSenha = activityLoginBinding.inputSenha.getText().toString();
-        String inputEmail = activityLoginBinding.inputEmail.getText().toString();
+  @Override
+  protected void onResume() {
+    setFragment(professorLoginFragment);
+    super.onResume();
+  }
 
-        try{
-          if (cadastro) {
-            firebaseAutenticacaoAuth.realizarCadastro(LoginActivity.this,inputEmail,inputSenha,inputConfirmarSenha);
-          } else {
-            firebaseAutenticacaoAuth.realizarLogin(LoginActivity.this,inputEmail,inputSenha);
-          }
-        }catch(IllegalArgumentException ex){
-          Snackbar.make(activityLoginBinding.getRoot(), "Atenção, os campos de e-mail e senha devem ser preenchidos", Snackbar.LENGTH_LONG).show();
-        }
+  private void setFragment(Fragment fragment){
+    FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+    fragmentTransaction.replace(activityLoginBinding.framelayoutInterfaceAlunoProfessor.getId(), fragment);
+    fragmentTransaction.commit();
+  }
 
+  View.OnClickListener listener = new View.OnClickListener() {
+    @Override
+    public void onClick(View v) {
+
+      if(activityLoginBinding.btnInterfaceAluno.getId() == (v.getId())){
+        setFragment(alunoCadastroFragment);
       }
-    });
-  }
-
-  private void clickAindaNaoTemConta() {
-    activityLoginBinding.textoMudaLoginCadastro.setOnClickListener(new View.OnClickListener() {
-      @Override
-      public void onClick(View view) {
-        cadastro = !cadastro;
-        if (cadastro) {
-          activityLoginBinding.inputConfirmarSenha.setVisibility(View.VISIBLE);
-          activityLoginBinding.btnEntrarCadastrarEntrar.setText("Cadastrar");
-          activityLoginBinding.textoMudaLoginCadastro.setText("Já tem uma conta ?");
-        } else {
-          activityLoginBinding.inputConfirmarSenha.setVisibility(View.GONE);
-          activityLoginBinding.btnEntrarCadastrarEntrar.setText("Entrar");
-          activityLoginBinding.textoMudaLoginCadastro.setText("Ainda não tem uma conta ?");
-        }
+      if(activityLoginBinding.btnInterfaceProfessor.getId() == (v.getId())){
+        setFragment(professorLoginFragment);
       }
-    });
-  }
+    }
+  };
 
 
 }

@@ -15,8 +15,7 @@ public class Aluno implements Serializable {
   private String nome;
   private String curso;
 
-  public Aluno(Integer id, String nome, String curso) {
-    this.id = id;
+  public Aluno(String nome, String curso) {
     this.nome = nome;
     this.curso = curso;
   }
@@ -25,6 +24,7 @@ public class Aluno implements Serializable {
   public Aluno() {
 
   }
+
 
   public Integer getId() {
     return id;

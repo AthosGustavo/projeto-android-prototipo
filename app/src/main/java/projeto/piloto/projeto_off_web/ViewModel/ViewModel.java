@@ -1,14 +1,13 @@
 package projeto.piloto.projeto_off_web.ViewModel;
 
 import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.ViewModel;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 import projeto.piloto.projeto_off_web.Model.Entidade.Professor;
 
-public class TurmaViewModel extends ViewModel {
+public class ViewModel extends androidx.lifecycle.ViewModel {
 
   private final ExecutorService executorService = Executors.newCachedThreadPool();
   private final MutableLiveData<Professor> professor = new MutableLiveData<>();

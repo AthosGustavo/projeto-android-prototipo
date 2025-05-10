@@ -2,6 +2,7 @@ package projeto.piloto.projeto_off_web.Dao;
 
 import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
+import androidx.room.Insert;
 import androidx.room.Query;
 import androidx.room.Transaction;
 
@@ -15,6 +16,9 @@ public interface AlunoDao {
 
   @Query("SELECT * FROM alunos")
   List<Aluno> buscarAlunos();
+
+  @Insert
+  Long inserir(Aluno aluno);
 
   @Transaction
   @Query("SELECT * FROM alunos WHERE id = :alunoId")

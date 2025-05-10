@@ -12,8 +12,7 @@ import android.view.ViewGroup;
 import projeto.piloto.projeto_off_web.Database.OffWebDb;
 import projeto.piloto.projeto_off_web.Model.Entidade.Professor;
 import projeto.piloto.projeto_off_web.Model.Entidade.Turma;
-import projeto.piloto.projeto_off_web.R;
-import projeto.piloto.projeto_off_web.ViewModel.TurmaViewModel;
+import projeto.piloto.projeto_off_web.ViewModel.ViewModel;
 import projeto.piloto.projeto_off_web.databinding.FragmentCriarTurmaBinding;
 
 /**
@@ -33,7 +32,7 @@ public class CriarTurmaFragment extends Fragment {
 
   private FragmentCriarTurmaBinding fragmentCriarTurmaBinding;
   private OffWebDb offWebDb;
-  private TurmaViewModel turmaViewModel;
+  private ViewModel viewModel;
 
 
   public CriarTurmaFragment() {
@@ -58,7 +57,7 @@ public class CriarTurmaFragment extends Fragment {
     }
 
     offWebDb = OffWebDb.getInstance(getContext());
-    turmaViewModel = new ViewModelProvider(requireActivity()).get(TurmaViewModel.class);
+    viewModel = new ViewModelProvider(requireActivity()).get(ViewModel.class);
   }
 
   @Override
@@ -75,9 +74,9 @@ public class CriarTurmaFragment extends Fragment {
     fragmentCriarTurmaBinding.btnCriarTurma.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View view) {
-        Professor professor = turmaViewModel.professor();
+        Professor professor = viewModel.professor();
 
-        turmaViewModel.getExecutorService().execute(() -> {
+        viewModel.getExecutorService().execute(() -> {
           offWebDb.turmaDao().inserir(
                   new Turma(fragmentCriarTurmaBinding.nomeTurma.getText().toString(),professor.getId())
           );

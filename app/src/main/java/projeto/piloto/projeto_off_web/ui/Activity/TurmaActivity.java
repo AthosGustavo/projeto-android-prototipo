@@ -1,7 +1,6 @@
 package projeto.piloto.projeto_off_web.ui.Activity;
 
 import android.os.Bundle;
-import android.view.View;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,7 +14,7 @@ import androidx.lifecycle.ViewModelProvider;
 import projeto.piloto.projeto_off_web.Model.Entidade.Professor;
 import projeto.piloto.projeto_off_web.Model.Entidade.Turma;
 import projeto.piloto.projeto_off_web.R;
-import projeto.piloto.projeto_off_web.ViewModel.TurmaViewModel;
+import projeto.piloto.projeto_off_web.ViewModel.ViewModel;
 import projeto.piloto.projeto_off_web.databinding.ActivityTurmaBinding;
 import projeto.piloto.projeto_off_web.ui.Fragment.Turma.CriarTurmaFragment;
 import projeto.piloto.projeto_off_web.ui.Fragment.Turma.ListaTurmaFragment;
@@ -28,7 +27,7 @@ public class TurmaActivity extends AppCompatActivity implements IListaTurmaListe
   private CriarTurmaFragment criarTurmaFragment;
   private ListaTurmaFragment listaTurmaFragment;
   private TurmaFragment turmaFragment;
-  private TurmaViewModel turmaViewModel;
+  private ViewModel viewModel;
   
   
   @Override
@@ -43,7 +42,7 @@ public class TurmaActivity extends AppCompatActivity implements IListaTurmaListe
       return insets;
     });
 
-    turmaViewModel = new ViewModelProvider(this).get(TurmaViewModel.class);
+    viewModel = new ViewModelProvider(this).get(ViewModel.class);
     criarTurmaFragment = new CriarTurmaFragment();
     listaTurmaFragment = new ListaTurmaFragment();
     turmaFragment = new TurmaFragment();
@@ -74,7 +73,7 @@ public class TurmaActivity extends AppCompatActivity implements IListaTurmaListe
 
   public void mockProfessor(){
     Professor professor = new Professor(1,"Alberto Silva","Direito Administrativo");
-    turmaViewModel.setProfessor(professor);
+    viewModel.setProfessor(professor);
   }
 
 

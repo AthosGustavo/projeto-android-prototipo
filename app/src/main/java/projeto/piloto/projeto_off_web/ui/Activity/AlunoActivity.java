@@ -1,7 +1,6 @@
 package projeto.piloto.projeto_off_web.ui.Activity;
 
 import android.os.Bundle;
-import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,20 +10,18 @@ import androidx.core.view.WindowInsetsCompat;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
-import projeto.piloto.projeto_off_web.Consumer.Callback;
 import projeto.piloto.projeto_off_web.Database.OffWebDb;
 import projeto.piloto.projeto_off_web.Model.Entidade.Aluno;
 import projeto.piloto.projeto_off_web.Model.Entidade.Ficha;
-import projeto.piloto.projeto_off_web.Model.Relation.AlunoFichaRelation;
 import projeto.piloto.projeto_off_web.R;
-import projeto.piloto.projeto_off_web.ViewModel.TurmaViewModel;
+import projeto.piloto.projeto_off_web.ViewModel.ViewModel;
 import projeto.piloto.projeto_off_web.databinding.ActivityAlunoBinding;
 
 public class AlunoActivity extends AppCompatActivity {
 
   private Aluno alunoClicado;
   private ActivityAlunoBinding activityAlunoBinding;
-  private TurmaViewModel turmaViewModel;
+  private ViewModel viewModel;
   private OffWebDb offWebDb;
   private Ficha fichaAluno;
 
@@ -43,7 +40,7 @@ public class AlunoActivity extends AppCompatActivity {
     });
 
     offWebDb = OffWebDb.getInstance(this);
-    turmaViewModel = new ViewModelProvider(this).get(TurmaViewModel.class);
+    viewModel = new ViewModelProvider(this).get(ViewModel.class);
     this.alunoClicado = (Aluno) getIntent().getSerializableExtra("aluno");
     buscarFicha(alunoClicado);
 

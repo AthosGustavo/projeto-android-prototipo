@@ -1,73 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/scrollView"
+    android:id="@+id/activity_login"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true">
 
     <RelativeLayout
-        android:id="@+id/main"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        tools:context=".layout.LoginActivity">
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-        <EditText
-            android:id="@+id/inputEmail"
+        <LinearLayout
+            android:id="@+id/container_opcao_aluno_professor"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:gravity="center"
+            android:layout_marginTop="100dp"
+            >
+
+            <Button
+                android:id="@+id/btn_interface_professor"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Professor"
+                android:layout_weight="1"
+                android:layout_marginHorizontal="15dp"
+                />
+
+            <Button
+                android:id="@+id/btn_interface_aluno"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Aluno"
+                android:layout_weight="1"
+                android:layout_marginHorizontal="15dp"
+                />
+
+        </LinearLayout>
+
+        <FrameLayout
+            android:id="@+id/framelayout_interface_aluno_professor"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginEnd="20dp"
-            android:layout_marginTop="50dp"
-            android:hint="E-mail" />
+            android:layout_below="@+id/container_opcao_aluno_professor">
 
-        <EditText
-            android:id="@+id/inputSenha"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:hint="Senha"
-            android:inputType="textPassword"
-            android:layout_alignStart="@id/inputEmail"
-            android:layout_alignEnd="@id/inputEmail"
-            android:layout_below="@id/inputEmail"/>
 
-        <EditText
-            android:id="@+id/inputConfirmarSenha"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:hint="Confirmar senha"
-            android:visibility="gone"
-            android:inputType="textPassword"
-            android:layout_alignStart="@id/inputEmail"
-            android:layout_alignEnd="@id/inputEmail"
-            android:layout_below="@id/inputSenha"/>
 
-        <Button
-            android:id="@+id/btnEntrarCadastrarEntrar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Entrar"
-            android:layout_centerHorizontal="true"
-            android:layout_below="@id/inputConfirmarSenha"
-            android:layout_marginTop="20dp"
-            android:layout_alignStart="@id/inputConfirmarSenha"
-            android:layout_alignEnd="@id/inputConfirmarSenha"/>
-
-        <TextView
-            android:id="@+id/textoMudaLoginCadastro"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:clickable="true"
-            android:focusable="true"
-            android:text="Ainda não tem uma conta ?"
-            android:textColor="@android:color/holo_blue_dark"
-            android:layout_below="@id/btnEntrarCadastrarEntrar"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="15dp"/>
+        </FrameLayout>
 
     </RelativeLayout>
+
+
+
 
 </ScrollView>
 

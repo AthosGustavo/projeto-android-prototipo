@@ -10,10 +10,10 @@ public class Ficha {
   @PrimaryKey
   private Integer id;
   private Integer aluno;
-  private Double horasUsoInternetDia;
+  private Float horasUsoInternetDia;
   private String descricao;
 
-  public Ficha(Integer id, Integer aluno, Double horasUsoInternetDia, String descricao) {
+  public Ficha(Integer id, Integer aluno, Float horasUsoInternetDia, String descricao) {
     this.id = id;
     this.aluno = aluno;
     this.horasUsoInternetDia = horasUsoInternetDia;
@@ -23,6 +23,13 @@ public class Ficha {
   @Ignore
   public Ficha() {
 
+  }
+
+  @Ignore
+  public Ficha(Float horasUsoInternet,String descricao, Integer aluno) {
+    this.horasUsoInternetDia = horasUsoInternet;
+    this.aluno = aluno;
+    this.descricao = descricao;
   }
 
   public Integer getId() {
@@ -41,11 +48,11 @@ public class Ficha {
     this.aluno = aluno;
   }
 
-  public Double getHorasUsoInternetDia() {
+  public Float getHorasUsoInternetDia() {
     return horasUsoInternetDia;
   }
 
-  public void setHorasUsoInternetDia(Double horasUsoInternetDia) {
+  public void setHorasUsoInternetDia(Float horasUsoInternetDia) {
     this.horasUsoInternetDia = horasUsoInternetDia;
   }
 

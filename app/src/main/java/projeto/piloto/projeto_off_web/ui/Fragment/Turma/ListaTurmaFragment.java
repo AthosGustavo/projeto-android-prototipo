@@ -14,14 +14,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import projeto.piloto.projeto_off_web.Adapter.ListaTurmaAdapter;
 import projeto.piloto.projeto_off_web.Database.OffWebDb;
 import projeto.piloto.projeto_off_web.Model.Entidade.Turma;
-import projeto.piloto.projeto_off_web.R;
-import projeto.piloto.projeto_off_web.ViewModel.TurmaViewModel;
+import projeto.piloto.projeto_off_web.ViewModel.ViewModel;
 import projeto.piloto.projeto_off_web.databinding.FragmentListaTurmaBinding;
 
 
@@ -34,7 +30,7 @@ public class ListaTurmaFragment extends Fragment {
   
   private FragmentListaTurmaBinding fragmentListaTurmaBinding;
   private IListaTurmaListener iListaTurmaListener;
-  private TurmaViewModel turmaViewModel;
+  private ViewModel viewModel;
   private OffWebDb offWebDb;
   ListaTurmaAdapter listaTurmaAdapter;
   
@@ -70,7 +66,7 @@ public class ListaTurmaFragment extends Fragment {
       mParam2 = getArguments().getString(ARG_PARAM2);
     }
 
-    turmaViewModel = new ViewModelProvider(requireActivity()).get(TurmaViewModel.class);
+    viewModel = new ViewModelProvider(requireActivity()).get(ViewModel.class);
     offWebDb = OffWebDb.getInstance(getContext());
   }
 
@@ -90,7 +86,7 @@ public class ListaTurmaFragment extends Fragment {
   private void configuraRecyclerView(){
     RecyclerView recyclerView = fragmentListaTurmaBinding.recyclerViewListaTurma;
 
-    turmaViewModel.getExecutorService().execute(() -> {
+    viewModel.getExecutorService().execute(() -> {
       listaTurmaAdapter = new ListaTurmaAdapter(getContext(), offWebDb.turmaDao().buscarTurmas(), new ListaTurmaAdapter.OnItemClickListener() {
         @Override
         public void onItemClick(Turma turma) {

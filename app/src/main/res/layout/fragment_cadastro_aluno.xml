@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.Fragment.Login.AlunoCadastroFragment"
+    android:orientation="vertical">
+
+    <EditText
+        android:id="@+id/nome_aluno"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Nome completo"/>
+
+    <EditText
+        android:id="@+id/curso"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Curso"/>
+
+    <EditText
+        android:id="@+id/horas_uso_internet"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Horas de uso de internet por dia"/>
+
+    <EditText
+        android:id="@+id/codigo_turma"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Código da turma"/>
+
+    <EditText
+        android:id="@+id/descricao"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="300dp"
+        android:gravity="top"
+        android:hint="Conte as suas dificuldades relacionadas ao seu desempenho escolar"/>
+
+    <Button
+        android:id="@+id/btn_cadastrar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Cadastrar"/>
+
+</LinearLayout>

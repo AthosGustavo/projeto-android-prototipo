@@ -2,16 +2,19 @@
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:tools="http://schemas.android.com/tools">
+    android:layout_margin="10dp"
+    android:radius="12dp"
+    >
 
     <TextView
         android:id="@+id/nome"
-        android:singleLine="true"
-        android:ellipsize="marquee"
-        android:textColor="@color/design_default_color_primary_variant"
-        android:textSize="16sp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        tools:text="Jogar o lixo quando chegar do trabalho" />
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:maxLines="1"
+        android:ellipsize="end"
+        android:padding="5dp"
+        />
 </com.google.android.material.card.MaterialCardView>

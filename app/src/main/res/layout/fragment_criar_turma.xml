@@ -1,23 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container_criar_turma"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.Fragment.Turma.CriarTurmaFragment"
-    android:gravity="center">
+    android:padding="24dp"
+    android:background="@android:color/white"
+    tools:context=".ui.Fragment.Turma.CriarTurmaFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <EditText
-        android:id="@+id/nome_turma"
+    <!-- Card container para um visual mais moderno -->
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/card_criar_turma"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Nome da turma"/>
+        android:layout_centerInParent="true">
 
-    <Button
-        android:id="@+id/btn_criar_turma"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Criar"
-        android:layout_below="@id/nome_turma"/>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="24dp">
 
+            <EditText
+                android:id="@+id/nome_turma"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Nome da turma"
+                android:padding="12dp"
+                android:textSize="16sp"
+                android:inputType="textCapWords"
+                android:layout_marginBottom="16dp" />
+
+            <Button
+                android:id="@+id/btn_criar_turma"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Criar Turma"
+                android:textAllCaps="false"
+                android:layout_below="@id/nome_turma"
+                android:textColor="@android:color/white"
+                android:padding="12dp"
+                android:textSize="16sp"
+                android:layout_marginTop="8dp" />
+
+        </RelativeLayout>
+    </com.google.android.material.card.MaterialCardView>
 </RelativeLayout>

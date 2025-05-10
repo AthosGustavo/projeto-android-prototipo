@@ -81,6 +81,7 @@ public class TurmaFragment extends Fragment{
 
   }
 
+
   private void configuraRecyclerView() {
     RecyclerView recyclerView = fragmentTurmaBinding.recyclerViewListaAlunos;
 

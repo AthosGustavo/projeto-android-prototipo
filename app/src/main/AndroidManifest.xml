@@ -10,16 +10,22 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Projetooffweb"
+        android:theme="@style/Theme.ProjetoOffWeb"
         tools:targetApi="31">
+        <activity
+            android:name=".ui.Activity.TreinamentoActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.Activity.TurmaActivity"
+            android:exported="false" />
         <activity
             android:name=".ui.Activity.AlunoActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.Activity.LoginActivity"
+            android:name=".ui.Activity.VideoPlayerActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.Activity.TurmaActivity"
+            android:name=".ui.Activity.LoginActivity"
             android:exported="true"
             android:windowSoftInputMode="adjustResize">
             <intent-filter>

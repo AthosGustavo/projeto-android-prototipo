@@ -7,17 +7,6 @@
     android:layout_height="match_parent"
     tools:context=".ui.Activity.TurmaActivity">
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar_turma_fragment"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:elevation="4dp"
-        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        app:popupTheme="@style/ThemeOverlay.MaterialComponents.ActionBar"
-        app:title="@string/app_name" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view_lista_alunos"
@@ -30,5 +19,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:listitem="@layout/item_aluno" />
+
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+        android:id="@+id/btn_adc_materiais"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="35dp"
+        android:layout_marginEnd="25dp"
+        android:text="MATERIAIS"
+        android:textAlignment="center"
+        app:rippleColor="@android:color/darker_gray" />
 
 </RelativeLayout>

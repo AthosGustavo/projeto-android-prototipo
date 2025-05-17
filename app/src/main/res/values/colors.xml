@@ -2,4 +2,16 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="colorPrimary">#2C3E50</color>
+    <color name="colorPrimaryVariant">#1A252F</color>
+    <color name="colorSecondary">#F39C12</color>
+    <color name="colorSecondaryVariant">#D68910</color>
+    <color name="colorBackground">#F4F6F7</color>
+    <color name="colorSurface">#FFFFFF</color>
+    <color name="colorOnPrimary">#FFFFFF</color>
+    <color name="colorOnSecondary">#FFFFFF</color>
+    <color name="colorOnBackground">#2C3E50</color>
+    <color name="colorOnSurface">#2C3E50</color>
+    <color name="colorError">#E74C3C</color>
+
 </resources>

@@ -14,6 +14,7 @@ import projeto.piloto.projeto_off_web.Database.OffWebDb;
 import projeto.piloto.projeto_off_web.Model.Entidade.Professor;
 import projeto.piloto.projeto_off_web.Model.Entidade.Turma;
 import projeto.piloto.projeto_off_web.R;
+import projeto.piloto.projeto_off_web.Sessao;
 import projeto.piloto.projeto_off_web.ViewModel.ViewModel;
 
 public class CriarTurmaActivity extends AppCompatActivity {
@@ -22,7 +23,8 @@ public class CriarTurmaActivity extends AppCompatActivity {
   private Button btnCriarTurma;
   private OffWebDb offWebDb;
   private ViewModel viewModel;
-  private Professor professor = new Professor(1,"Alberto Silva","Direito Administrativo");
+  private Sessao sessao;
+  //private Professor professor = new Professor(1,"Alberto Silva","Direito Administrativo");
 
 
   @Override
@@ -40,7 +42,7 @@ public class CriarTurmaActivity extends AppCompatActivity {
     offWebDb = OffWebDb.getInstance(this);
 
     configuraBtnCriarTurma();
-
+    sessao = Sessao.getInstance(this);
   }
 
   @Override
@@ -57,7 +59,7 @@ public class CriarTurmaActivity extends AppCompatActivity {
       System.out.println("teste");
       new Thread(() -> {
         offWebDb.turmaDao().inserir(
-                new Turma(nomeTurma.getText().toString(), professor.getId())
+                new Turma(nomeTurma.getText().toString(), sessao.getProfessorLogado().getId())
         );
       }).start();
       finish(); // Fecha a Activity e retorna ao fragmento anterior

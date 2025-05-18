@@ -69,6 +69,9 @@ public class TelaPrincipalActivity extends AppCompatActivity  implements IListaT
     if(v.getId() == R.id.btn_menu_treinamento) {
       setFragment(treinamentoFragment);
     }
+    if(v.getId() == R.id.btn_menu_perfil) {
+      setFragment(perfilFragment);
+    }
   };
 
   @Override

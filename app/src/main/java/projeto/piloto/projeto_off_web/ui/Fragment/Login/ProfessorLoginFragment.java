@@ -157,6 +157,7 @@ public class ProfessorLoginFragment extends Fragment {
 
             Professor professor = Objects.nonNull(loginEncontrado.getProfessor()) ? offWebDb.professorDao().buscarPorId(loginEncontrado.getProfessor()) : null;
             sessao.setProfessorLogado(professor);
+            sessao.setLogin(loginEncontrado);
             iProfessorLoginListener.onProfessorLoginSuccess();
           } else {
             iProfessorLoginListener.onProfessorLoginFailure("E-mail ou senha incorretos");
@@ -186,7 +187,7 @@ public class ProfessorLoginFragment extends Fragment {
                 fragmentProfessorLoginBinding.inputConfirmarSenha.setVisibility(View.GONE);
                 fragmentProfessorLoginBinding.btnEntrarCadastrarEntrar.setText("Entrar");
                 fragmentProfessorLoginBinding.textoMudaLoginCadastro.setText("Ainda não tem uma conta ?");
-                cadastro = true;
+                cadastro = false;
                 Snackbar.make(fragmentProfessorLoginBinding.getRoot(), "Conta criada com sucesso.", Snackbar.LENGTH_LONG).show();
               });
 

@@ -9,12 +9,18 @@ public class Professor {
 
   @PrimaryKey
   private Integer id;
+  private String foto;
   private String nome;
+  private String sobrenome;
+  private Integer idade;
   private String disciplina;
 
-  public Professor(Integer id, String nome, String disciplina) {
+  public Professor(Integer id, String foto, String nome, String sobrenome, Integer idade, String disciplina) {
     this.id = id;
+    this.foto = foto;
     this.nome = nome;
+    this.sobrenome = sobrenome;
+    this.idade = idade;
     this.disciplina = disciplina;
   }
 
@@ -51,5 +57,29 @@ public class Professor {
 
   public void setDisciplina(String disciplina) {
     this.disciplina = disciplina;
+  }
+
+  public String getSobrenome() {
+    return sobrenome;
+  }
+
+  public void setSobrenome(String sobrenome) {
+    this.sobrenome = sobrenome;
+  }
+
+  public Integer getIdade() {
+    return idade;
+  }
+
+  public void setIdade(Integer idade) {
+    this.idade = idade;
+  }
+
+  public String getFoto() {
+    return foto;
+  }
+
+  public void setFoto(String foto) {
+    this.foto = foto;
   }
 }

@@ -23,7 +23,7 @@ import projeto.piloto.projeto_off_web.Model.Entidade.Professor;
 import projeto.piloto.projeto_off_web.Model.Entidade.Turma;
 import projeto.piloto.projeto_off_web.Model.Entidade.TurmaAluno;
 
-@Database(entities = {Aluno.class, Ficha.class, Professor.class, Turma.class, Material.class,TurmaAluno.class, Login.class}, version = 4)
+@Database(entities = {Aluno.class, Ficha.class, Professor.class, Turma.class, Material.class,TurmaAluno.class, Login.class}, version = 5)
 public abstract class OffWebDb extends RoomDatabase {
 
 
@@ -44,7 +44,9 @@ public abstract class OffWebDb extends RoomDatabase {
         if (Objects.isNull(OffWebDb)) {
           OffWebDb = Room.databaseBuilder(
                   context.getApplicationContext(),
-                  OffWebDb.class, "offWeb.db").build();
+                  OffWebDb.class, "offWeb.db")
+                  .fallbackToDestructiveMigration()
+                  .build();
 
         }
       }

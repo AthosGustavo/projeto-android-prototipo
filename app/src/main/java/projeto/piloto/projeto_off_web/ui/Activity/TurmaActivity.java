@@ -40,7 +40,7 @@ public class TurmaActivity extends AppCompatActivity{
 
     viewModel = new ViewModelProvider(this).get(ViewModel.class);
     listaTurmaFragment = new ListaTurmaFragment();
-    mockProfessor();
+
   }
 
   @Override
@@ -65,9 +65,5 @@ public class TurmaActivity extends AppCompatActivity{
     setFragment(turmaFragment);
   }*/
 
-  public void mockProfessor(){
-    Professor professor = new Professor(1,"Alberto Silva","Direito Administrativo");
-    viewModel.setProfessor(professor);
-  }
 
 }

@@ -1,17 +1,31 @@
 package projeto.piloto.projeto_off_web.ui.Fragment.Login;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.google.android.material.snackbar.Snackbar;
 
+import java.util.Objects;
+
 import projeto.piloto.projeto_off_web.Database.FirebaseAutenticacao;
+import projeto.piloto.projeto_off_web.Database.OffWebDb;
+import projeto.piloto.projeto_off_web.Model.Entidade.Login;
+import projeto.piloto.projeto_off_web.Model.Entidade.Professor;
+import projeto.piloto.projeto_off_web.Sessao;
+import projeto.piloto.projeto_off_web.Util.Util;
+import projeto.piloto.projeto_off_web.ViewModel.ViewModel;
 import projeto.piloto.projeto_off_web.databinding.FragmentProfessorLoginBinding;
+import projeto.piloto.projeto_off_web.ui.Activity.TelaPrincipalActivity;
 
 
 /**
@@ -24,6 +38,10 @@ public class ProfessorLoginFragment extends Fragment {
   private FragmentProfessorLoginBinding fragmentProfessorLoginBinding;
   private FirebaseAutenticacao firebaseAutenticacaoAuth;
   private boolean cadastro = false;
+  private OffWebDb offWebDb;
+  private ViewModel viewModel;
+  private IComunicacaoTelaPrincipal iComunicacaoTelaPrincipal;
+  private Sessao sessao;
   
   private static final String ARG_PARAM1 = "param1";
   private static final String ARG_PARAM2 = "param2";
@@ -62,7 +80,10 @@ public class ProfessorLoginFragment extends Fragment {
       mParam2 = getArguments().getString(ARG_PARAM2);
     }
 
-    firebaseAutenticacaoAuth = new FirebaseAutenticacao(fragmentProfessorLoginBinding);
+    //firebaseAutenticacaoAuth = new FirebaseAutenticacao(fragmentProfessorLoginBinding);
+    offWebDb = OffWebDb.getInstance(getContext());
+    viewModel = new ViewModelProvider(requireActivity()).get(ViewModel.class);
+    sessao = Sessao.getInstance(getContext());
   }
 
   @Override
@@ -75,6 +96,12 @@ public class ProfessorLoginFragment extends Fragment {
 
   }
 
+  @Override
+  public void onAttach(@NonNull Context context) {
+    super.onAttach(context);
+    this.iComunicacaoTelaPrincipal = (IComunicacaoTelaPrincipal) context;
+  }
+
   private void configuraBtnEntrarCadastrar() {
     fragmentProfessorLoginBinding.btnEntrarCadastrarEntrar.setOnClickListener(new View.OnClickListener() {
       @Override
@@ -85,14 +112,100 @@ public class ProfessorLoginFragment extends Fragment {
 
         try{
           if (cadastro) {
+            realizarCadastro(inputEmail,inputSenha,inputConfirmarSenha);
+          } else {
+            realizarLogin(inputEmail, inputSenha, new IProfessorLoginListener() {
+              @Override
+              public void onProfessorLoginSuccess() {
+                Snackbar.make(fragmentProfessorLoginBinding.getRoot(), "Seja bem-vindo", Snackbar.LENGTH_LONG).show();
+                Intent intent = new Intent(getContext(), TelaPrincipalActivity.class);
+                startActivity(intent);
+              }
+
+              @Override
+              public void onProfessorLoginFailure(String errorMessage) {
+                Util.exibirDialogMsgErro(getContext(),"Atenção", errorMessage);
+              }
+            });
+          }
+        }catch(IllegalArgumentException ex){
+          Util.exibirDialogMsgErro(getContext(),"Atenção", "Atenção, os campos de e-mail e senha devem ser preenchidos");
+        }
+
+        /*try{
+          if (cadastro) {
             firebaseAutenticacaoAuth.realizarCadastro(getActivity(),inputEmail,inputSenha,inputConfirmarSenha);
           } else {
             firebaseAutenticacaoAuth.realizarLogin(getActivity(),inputEmail,inputSenha);
           }
         }catch(IllegalArgumentException ex){
           Snackbar.make(fragmentProfessorLoginBinding.getRoot(), "Atenção, os campos de e-mail e senha devem ser preenchidos", Snackbar.LENGTH_LONG).show();
-        }
+        }*/
 
+      }
+    });
+  }
+
+  private void realizarLogin(String email, String senha, IProfessorLoginListener iProfessorLoginListener){
+
+      viewModel.getExecutorService().execute(() -> {
+        Login loginEncontrado = offWebDb.loginDao().realizarLogin(email, senha);
+
+        requireActivity().runOnUiThread(() -> {
+
+          if (Objects.nonNull(loginEncontrado)) {
+
+            Professor professor = Objects.nonNull(loginEncontrado.getProfessor()) ? offWebDb.professorDao().buscarPorId(loginEncontrado.getProfessor()) : null;
+            sessao.setProfessorLogado(professor);
+            iProfessorLoginListener.onProfessorLoginSuccess();
+          } else {
+            iProfessorLoginListener.onProfessorLoginFailure("E-mail ou senha incorretos");
+          }
+        });
+      });
+
+
+
+  }
+
+  private void realizarCadastro(String email, String senha, String senhaRepetida) {
+    viewModel.getExecutorService().execute(() -> {
+      try{
+        if(senha.equals(senhaRepetida)){
+          viewModel.getExecutorService().execute(() -> {
+            Login verificaContaExistente = offWebDb.loginDao().contaExiste(email);
+
+            if(Objects.nonNull(verificaContaExistente)){
+              requireActivity().runOnUiThread(() -> {
+                Util.exibirDialogMsgErro(getContext(),"Atenção", "E-mail já cadastrado");
+              });
+            }else{
+              offWebDb.loginDao().inserir(new Login(email,senha));
+
+              requireActivity().runOnUiThread(() -> {
+                fragmentProfessorLoginBinding.inputConfirmarSenha.setVisibility(View.GONE);
+                fragmentProfessorLoginBinding.btnEntrarCadastrarEntrar.setText("Entrar");
+                fragmentProfessorLoginBinding.textoMudaLoginCadastro.setText("Ainda não tem uma conta ?");
+                cadastro = true;
+                Snackbar.make(fragmentProfessorLoginBinding.getRoot(), "Conta criada com sucesso.", Snackbar.LENGTH_LONG).show();
+              });
+
+            }
+
+          });
+
+
+
+
+        }else{
+          requireActivity().runOnUiThread(() -> {
+            Util.exibirDialogMsgErro(getContext(),"Atenção", "As senhas não conferem");
+          });
+        }
+      }catch (Exception e){
+        requireActivity().runOnUiThread(() -> {
+          Util.exibirDialogMsgErro(getContext(),"Atenção", "Erro inesperado");
+        });
       }
     });
   }
@@ -113,5 +226,14 @@ public class ProfessorLoginFragment extends Fragment {
         }
       }
     });
+  }
+
+  public interface IProfessorLoginListener {
+    void onProfessorLoginSuccess();
+    void onProfessorLoginFailure(String errorMessage);
+  }
+
+  public interface IComunicacaoTelaPrincipal{
+    void chamaTelaLoginProfessor();
   }
 }

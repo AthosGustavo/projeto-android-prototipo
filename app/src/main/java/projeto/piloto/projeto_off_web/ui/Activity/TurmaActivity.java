@@ -19,7 +19,7 @@ import projeto.piloto.projeto_off_web.ui.Fragment.Turma.ListaTurmaFragment;
 import projeto.piloto.projeto_off_web.ui.Fragment.Turma.ListaTurmaFragment.IListaTurmaListener;
 
 
-public class TurmaActivity extends AppCompatActivity implements IListaTurmaListener{
+public class TurmaActivity extends AppCompatActivity{
 
   private ActivityTurmaBinding activityTurmaBinding;
   private ListaTurmaFragment listaTurmaFragment;
@@ -69,6 +69,5 @@ public class TurmaActivity extends AppCompatActivity implements IListaTurmaListe
     Professor professor = new Professor(1,"Alberto Silva","Direito Administrativo");
     viewModel.setProfessor(professor);
   }
-
 
 }

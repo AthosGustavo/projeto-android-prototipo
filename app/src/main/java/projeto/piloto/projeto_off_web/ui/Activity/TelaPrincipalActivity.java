@@ -17,14 +17,18 @@ import projeto.piloto.projeto_off_web.Model.Entidade.Professor;
 import projeto.piloto.projeto_off_web.R;
 import projeto.piloto.projeto_off_web.ViewModel.ViewModel;
 import projeto.piloto.projeto_off_web.databinding.ActivityTelaPrincipalBinding;
+import projeto.piloto.projeto_off_web.ui.Fragment.Login.ProfessorLoginFragment.IComunicacaoTelaPrincipal;
+import projeto.piloto.projeto_off_web.ui.Fragment.PerfilFragment;
 import projeto.piloto.projeto_off_web.ui.Fragment.TreinamentoFragment;
 import projeto.piloto.projeto_off_web.ui.Fragment.Turma.ListaTurmaFragment;
+import projeto.piloto.projeto_off_web.ui.Fragment.Turma.ListaTurmaFragment.IListaTurmaListener;
 
-public class TelaPrincipalActivity extends AppCompatActivity {
+public class TelaPrincipalActivity extends AppCompatActivity  implements IListaTurmaListener {
 
   private ActivityTelaPrincipalBinding activityTelaPrincipalBinding;
   private ListaTurmaFragment listaTurmaFragment;
   private TreinamentoFragment treinamentoFragment;
+  private PerfilFragment perfilFragment;
   private ViewModel viewModel;
 
   @Override
@@ -43,6 +47,7 @@ public class TelaPrincipalActivity extends AppCompatActivity {
     viewModel = new ViewModelProvider(this).get(ViewModel.class);
     listaTurmaFragment = new ListaTurmaFragment();
     treinamentoFragment = new TreinamentoFragment();
+    perfilFragment = new PerfilFragment();
     activityTelaPrincipalBinding.btnMenuTurma.setOnClickListener(listener);
     activityTelaPrincipalBinding.btnMenuPerfil.setOnClickListener(listener);
     activityTelaPrincipalBinding.btnMenuTreinamento.setOnClickListener(listener);
@@ -65,4 +70,9 @@ public class TelaPrincipalActivity extends AppCompatActivity {
       setFragment(treinamentoFragment);
     }
   };
+
+  @Override
+  public void chamarAbaPerfil() {
+    setFragment(perfilFragment);
+  }
 }

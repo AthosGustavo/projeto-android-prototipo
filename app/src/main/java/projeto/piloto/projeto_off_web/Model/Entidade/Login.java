@@ -12,10 +12,9 @@ public class Login {
   private String senha;
   private Integer professor;
 
-  public Login(String email, String senha, Integer professor) {
+  public Login(String email, String senha) {
     this.email = email;
     this.senha = senha;
-    this.professor = professor;
   }
 
   public Integer getId() {

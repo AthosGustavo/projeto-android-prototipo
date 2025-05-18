@@ -20,7 +20,7 @@ import projeto.piloto.projeto_off_web.databinding.FragmentProfessorLoginBinding;
 import projeto.piloto.projeto_off_web.ui.Fragment.Login.AlunoCadastroFragment;
 import projeto.piloto.projeto_off_web.ui.Fragment.Login.ProfessorLoginFragment;
 
-public class LoginActivity extends AppCompatActivity {
+public class LoginActivity extends AppCompatActivity implements ProfessorLoginFragment.IComunicacaoTelaPrincipal {
 
   private ActivityLoginBinding activityLoginBinding;
   private AlunoCadastroFragment alunoCadastroFragment;
@@ -73,4 +73,8 @@ public class LoginActivity extends AppCompatActivity {
   };
 
 
+  @Override
+  public void chamaTelaLoginProfessor() {
+
+  }
 }

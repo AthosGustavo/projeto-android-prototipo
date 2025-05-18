@@ -1,10 +1,7 @@
 package projeto.piloto.projeto_off_web.ui.Fragment;
 
-import android.content.Intent;
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -12,15 +9,13 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import projeto.piloto.projeto_off_web.R;
-import projeto.piloto.projeto_off_web.ui.Activity.TreinamentoArquivoActivity;
-import projeto.piloto.projeto_off_web.ui.Activity.TreinamentoVideoActivity;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link TreinamentoFragment#newInstance} factory method to
+ * Use the {@link PerfilFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class TreinamentoFragment extends Fragment {
+public class PerfilFragment extends Fragment {
 
   // TODO: Rename parameter arguments, choose names that match
   // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -31,7 +26,7 @@ public class TreinamentoFragment extends Fragment {
   private String mParam1;
   private String mParam2;
 
-  public TreinamentoFragment() {
+  public PerfilFragment() {
     // Required empty public constructor
   }
 
@@ -41,11 +36,11 @@ public class TreinamentoFragment extends Fragment {
    *
    * @param param1 Parameter 1.
    * @param param2 Parameter 2.
-   * @return A new instance of fragment TreinamentoFragment.
+   * @return A new instance of fragment PerfilFragment.
    */
   // TODO: Rename and change types and number of parameters
-  public static TreinamentoFragment newInstance(String param1, String param2) {
-    TreinamentoFragment fragment = new TreinamentoFragment();
+  public static PerfilFragment newInstance(String param1, String param2) {
+    PerfilFragment fragment = new PerfilFragment();
     Bundle args = new Bundle();
     args.putString(ARG_PARAM1, param1);
     args.putString(ARG_PARAM2, param2);
@@ -66,28 +61,6 @@ public class TreinamentoFragment extends Fragment {
   public View onCreateView(LayoutInflater inflater, ViewGroup container,
                            Bundle savedInstanceState) {
     // Inflate the layout for this fragment
-    return inflater.inflate(R.layout.fragment_treinamento, container, false);
+    return inflater.inflate(R.layout.fragment_perfil, container, false);
   }
-
-  @Override
-  public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-    super.onViewCreated(view, savedInstanceState);
-    view.findViewById(R.id.btn_treinamento_video).setOnClickListener(listener);
-    view.findViewById(R.id.btn_treinamento_arquivo).setOnClickListener(listener);
-  }
-
-  View.OnClickListener listener = v -> {
-    Intent intent = null;
-
-    if (v.getId() == R.id.btn_treinamento_video) {
-      intent = new Intent(getContext(), TreinamentoVideoActivity.class);
-    }
-    if(v.getId() == R.id.btn_treinamento_arquivo) {
-      intent = new Intent(getContext(), TreinamentoArquivoActivity.class);
-    }
-
-    startActivity(intent);
-  };
-
-
 }

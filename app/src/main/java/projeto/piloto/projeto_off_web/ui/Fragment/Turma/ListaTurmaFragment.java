@@ -6,6 +6,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -16,10 +17,13 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import java.util.List;
+import java.util.Objects;
 
 import projeto.piloto.projeto_off_web.Adapter.ListaTurmaAdapter;
 import projeto.piloto.projeto_off_web.Database.OffWebDb;
 import projeto.piloto.projeto_off_web.Model.Entidade.Turma;
+import projeto.piloto.projeto_off_web.Sessao;
+import projeto.piloto.projeto_off_web.Util.Util;
 import projeto.piloto.projeto_off_web.ViewModel.ViewModel;
 import projeto.piloto.projeto_off_web.databinding.FragmentListaTurmaBinding;
 import projeto.piloto.projeto_off_web.ui.Activity.CriarTurmaActivity;
@@ -38,6 +42,7 @@ public class ListaTurmaFragment extends Fragment {
   private ViewModel viewModel;
   private OffWebDb offWebDb;
   ListaTurmaAdapter listaTurmaAdapter;
+  private Sessao sessao;
   
   private static final String ARG_PARAM1 = "param1";
   private static final String ARG_PARAM2 = "param2";
@@ -73,6 +78,7 @@ public class ListaTurmaFragment extends Fragment {
 
     viewModel = new ViewModelProvider(requireActivity()).get(ViewModel.class);
     offWebDb = OffWebDb.getInstance(getContext());
+    sessao = Sessao.getInstance(getContext());
   }
 
   @Override
@@ -124,15 +130,43 @@ public class ListaTurmaFragment extends Fragment {
     fragmentListaTurmaBinding.btnCriarTurma.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View view) {
-        Intent intent = new Intent(getActivity(), CriarTurmaActivity.class);
-        startActivity(intent);
+
+        if(Objects.nonNull(sessao.getProfessorLogado())){
+          Intent intent = new Intent(getActivity(), CriarTurmaActivity.class);
+          startActivity(intent);
+        }else{
+          exibirDialogAvisoAcaoNavegacao("Atualização cadastral","O seu cadastro não está atualizado, deseja ser redirecionado ?");
+        }
+
       }
     });
   }
 
+  public void exibirDialogAvisoAcaoNavegacao(String titulo, String msg) {
+    AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+    builder.setTitle("Atualização cadastral");
+    builder.setMessage(msg);
+
+    // Botão de Confirmar
+    builder.setPositiveButton("Confirmar", (dialog, which) -> {
+      iListaTurmaListener.chamarAbaPerfil();
+
+    });
+
+    builder.setNegativeButton("Cancelar", (dialog, which) -> dialog.dismiss());
+
+    AlertDialog alertDialog = builder.create();
+    alertDialog.show();
+  }
+
+  @Override
+  public void onAttach(@NonNull Context context) {
+    super.onAttach(context);
+    this.iListaTurmaListener = (IListaTurmaListener) context;
+  }
+
   public interface IListaTurmaListener {
-
-
+    void chamarAbaPerfil();
   }
 
 

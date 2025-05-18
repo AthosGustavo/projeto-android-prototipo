@@ -1,9 +1,11 @@
 package projeto.piloto.projeto_off_web.ui.Activity;
 
 import android.os.Bundle;
+import android.view.MenuItem;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
@@ -39,6 +41,10 @@ public class AlunoActivity extends AppCompatActivity {
       return insets;
     });
 
+    Toolbar toolbar = findViewById(R.id.toolbar);
+    setSupportActionBar(toolbar);
+    getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
     offWebDb = OffWebDb.getInstance(this);
     viewModel = new ViewModelProvider(this).get(ViewModel.class);
     this.alunoClicado = (Aluno) getIntent().getSerializableExtra("aluno");
@@ -62,5 +68,14 @@ public class AlunoActivity extends AppCompatActivity {
     activityAlunoBinding.curso.setText(aluno.getCurso());
     activityAlunoBinding.horasUsoInternetDia.setText(fichaAluno.getHorasUsoInternetDia().toString());
     activityAlunoBinding.descricao.setText(fichaAluno.getDescricao());
+  }
+
+  @Override
+  public boolean onOptionsItemSelected(MenuItem item) {
+    if (item.getItemId() == android.R.id.home) {
+      finish(); // Fecha a Activity ao clicar na seta
+      return true;
+    }
+    return super.onOptionsItemSelected(item);
   }
 }

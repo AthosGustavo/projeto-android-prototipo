@@ -3,12 +3,10 @@ package projeto.piloto.projeto_off_web.ui.Activity;
 import android.content.Intent;
 import android.content.res.AssetManager;
 import android.os.Bundle;
+import android.view.MenuItem;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -21,7 +19,7 @@ import java.util.List;
 import projeto.piloto.projeto_off_web.Adapter.VideoAdapter;
 import projeto.piloto.projeto_off_web.R;
 
-public class TreinamentoActivity extends AppCompatActivity implements VideoAdapter.OnItemClickListener {
+public class TreinamentoVideoActivity extends AppCompatActivity implements VideoAdapter.OnItemClickListener {
 
   private List<String> videoFiles = new ArrayList<>();
   private VideoAdapter adapter;
@@ -29,7 +27,7 @@ public class TreinamentoActivity extends AppCompatActivity implements VideoAdapt
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    setContentView(R.layout.activity_treinamento);
+    setContentView(R.layout.activity_treinamento_video);
 
     RecyclerView recyclerView = findViewById(R.id.recyclerView);
     recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -48,6 +46,19 @@ public class TreinamentoActivity extends AppCompatActivity implements VideoAdapt
 
     adapter = new VideoAdapter(videoFiles, this);
     recyclerView.setAdapter(adapter);
+
+    Toolbar toolbar = findViewById(R.id.toolbar);
+    setSupportActionBar(toolbar);
+    getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+  }
+
+  @Override
+  public boolean onOptionsItemSelected(MenuItem item) {
+    if (item.getItemId() == android.R.id.home) {
+      finish(); // Fecha a Activity ao clicar na seta
+      return true;
+    }
+    return super.onOptionsItemSelected(item);
   }
 
   @Override

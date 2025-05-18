@@ -72,4 +72,11 @@ public class ListaTurmaAdapter extends RecyclerView.Adapter<ListaTurmaAdapter.Vi
     }
 
   }
+
+  public void atualizar(List<Turma> turmas) {
+    this.listaTurmas.clear();
+    this.listaTurmas.addAll(turmas);
+
+    notifyDataSetChanged();
+  }
 }

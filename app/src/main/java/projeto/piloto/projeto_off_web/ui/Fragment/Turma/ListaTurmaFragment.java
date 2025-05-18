@@ -1,6 +1,7 @@
 package projeto.piloto.projeto_off_web.ui.Fragment.Turma;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -14,11 +15,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import java.util.List;
+
 import projeto.piloto.projeto_off_web.Adapter.ListaTurmaAdapter;
 import projeto.piloto.projeto_off_web.Database.OffWebDb;
 import projeto.piloto.projeto_off_web.Model.Entidade.Turma;
 import projeto.piloto.projeto_off_web.ViewModel.ViewModel;
 import projeto.piloto.projeto_off_web.databinding.FragmentListaTurmaBinding;
+import projeto.piloto.projeto_off_web.ui.Activity.CriarTurmaActivity;
+import projeto.piloto.projeto_off_web.ui.Activity.ListaAlunosActivity;
 
 
 /**
@@ -52,11 +57,11 @@ public class ListaTurmaFragment extends Fragment {
     return fragment;
   }
 
-  @Override
+/*  @Override
   public void onAttach(@NonNull Context context) {
     super.onAttach(context);
-    iListaTurmaListener = (IListaTurmaListener) context;
-  }
+    //iListaTurmaListener = (IListaTurmaListener) context;
+  }*/
 
   @Override
   public void onCreate(Bundle savedInstanceState) {
@@ -83,6 +88,17 @@ public class ListaTurmaFragment extends Fragment {
     super.onViewCreated(view, savedInstanceState);
   }
 
+  @Override
+  public void onResume() {
+    super.onResume();
+    new Thread(() -> {
+      List<Turma> turmas = offWebDb.turmaDao().buscarTurmas();
+      requireActivity().runOnUiThread(() -> {
+        listaTurmaAdapter.atualizar(turmas); // Atualiza a lista e notifica o adapter
+      });
+    }).start();
+  }
+
   private void configuraRecyclerView(){
     RecyclerView recyclerView = fragmentListaTurmaBinding.recyclerViewListaTurma;
 
@@ -90,7 +106,9 @@ public class ListaTurmaFragment extends Fragment {
       listaTurmaAdapter = new ListaTurmaAdapter(getContext(), offWebDb.turmaDao().buscarTurmas(), new ListaTurmaAdapter.OnItemClickListener() {
         @Override
         public void onItemClick(Turma turma) {
-          iListaTurmaListener.clicarTurma(turma);
+          Intent intent = new Intent(getContext(), ListaAlunosActivity.class);
+          intent.putExtra("turma", turma);
+          startActivity(intent);
         }
       });
 
@@ -106,14 +124,15 @@ public class ListaTurmaFragment extends Fragment {
     fragmentListaTurmaBinding.btnCriarTurma.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View view) {
-        iListaTurmaListener.criarTurma();
+        Intent intent = new Intent(getActivity(), CriarTurmaActivity.class);
+        startActivity(intent);
       }
     });
   }
 
   public interface IListaTurmaListener {
-    void clicarTurma(Turma turma);
-    void criarTurma();
+
+
   }
 
 

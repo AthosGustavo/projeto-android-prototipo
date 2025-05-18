@@ -1,6 +1,8 @@
 package projeto.piloto.projeto_off_web.ui.Activity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -14,25 +16,25 @@ import androidx.lifecycle.ViewModelProvider;
 import projeto.piloto.projeto_off_web.Model.Entidade.Professor;
 import projeto.piloto.projeto_off_web.R;
 import projeto.piloto.projeto_off_web.ViewModel.ViewModel;
-import projeto.piloto.projeto_off_web.databinding.ActivityTurmaBinding;
+import projeto.piloto.projeto_off_web.databinding.ActivityTelaPrincipalBinding;
+import projeto.piloto.projeto_off_web.ui.Fragment.TreinamentoFragment;
 import projeto.piloto.projeto_off_web.ui.Fragment.Turma.ListaTurmaFragment;
-import projeto.piloto.projeto_off_web.ui.Fragment.Turma.ListaTurmaFragment.IListaTurmaListener;
 
+public class TelaPrincipalActivity extends AppCompatActivity {
 
-public class TurmaActivity extends AppCompatActivity implements IListaTurmaListener{
-
-  private ActivityTurmaBinding activityTurmaBinding;
+  private ActivityTelaPrincipalBinding activityTelaPrincipalBinding;
   private ListaTurmaFragment listaTurmaFragment;
+  private TreinamentoFragment treinamentoFragment;
   private ViewModel viewModel;
-  
-  
+
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     EdgeToEdge.enable(this);
-    activityTurmaBinding = ActivityTurmaBinding.inflate(getLayoutInflater());
-    setContentView(activityTurmaBinding.getRoot());
-    ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.turma_activity), (v, insets) -> {
+
+    activityTelaPrincipalBinding = ActivityTelaPrincipalBinding.inflate(getLayoutInflater());
+    setContentView(activityTelaPrincipalBinding.getRoot());
+    ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
       Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
       v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
       return insets;
@@ -40,35 +42,27 @@ public class TurmaActivity extends AppCompatActivity implements IListaTurmaListe
 
     viewModel = new ViewModelProvider(this).get(ViewModel.class);
     listaTurmaFragment = new ListaTurmaFragment();
-    mockProfessor();
-  }
-
-  @Override
-  protected void onResume() {
+    treinamentoFragment = new TreinamentoFragment();
+    activityTelaPrincipalBinding.btnMenuTurma.setOnClickListener(listener);
+    activityTelaPrincipalBinding.btnMenuPerfil.setOnClickListener(listener);
+    activityTelaPrincipalBinding.btnMenuTreinamento.setOnClickListener(listener);
     setFragment(listaTurmaFragment);
-    super.onResume();
+
   }
 
   private void setFragment(Fragment fragment){
     FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-    fragmentTransaction.replace(activityTurmaBinding.turmaActivity.getId(), fragment);
+    fragmentTransaction.replace(activityTelaPrincipalBinding.containerTelaPrincipal.getId(), fragment);
     fragmentTransaction.commit();
   }
 
-/*  @Override
-  public void criarTurma() {
+  View.OnClickListener listener = v -> {
 
-  }*/
-
-/*  @Override
-  public void clicarTurma(Turma turma) {
-    setFragment(turmaFragment);
-  }*/
-
-  public void mockProfessor(){
-    Professor professor = new Professor(1,"Alberto Silva","Direito Administrativo");
-    viewModel.setProfessor(professor);
-  }
-
-
+    if (v.getId() == R.id.btn_menu_turma) {
+      setFragment(listaTurmaFragment);
+    }
+    if(v.getId() == R.id.btn_menu_treinamento) {
+      setFragment(treinamentoFragment);
+    }
+  };
 }

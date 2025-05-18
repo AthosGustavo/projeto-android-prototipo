@@ -11,11 +11,8 @@ import android.view.ViewGroup;
 import com.google.android.material.snackbar.Snackbar;
 
 import projeto.piloto.projeto_off_web.Database.FirebaseAutenticacao;
-import projeto.piloto.projeto_off_web.R;
-import projeto.piloto.projeto_off_web.databinding.ActivityLoginBinding;
-import projeto.piloto.projeto_off_web.databinding.FragmentCriarTurmaBinding;
 import projeto.piloto.projeto_off_web.databinding.FragmentProfessorLoginBinding;
-import projeto.piloto.projeto_off_web.ui.Activity.LoginActivity;
+
 
 /**
  * A simple {@link Fragment} subclass.

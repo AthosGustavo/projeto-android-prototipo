@@ -75,6 +75,6 @@ public class LoginActivity extends AppCompatActivity implements ProfessorLoginFr
 
   @Override
   public void chamaTelaLoginProfessor() {
-
+    setFragment(professorLoginFragment);
   }
 }

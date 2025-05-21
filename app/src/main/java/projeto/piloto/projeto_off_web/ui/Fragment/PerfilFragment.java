@@ -3,7 +3,6 @@ package projeto.piloto.projeto_off_web.ui.Fragment;
 import static android.app.Activity.RESULT_OK;
 
 import android.Manifest;
-import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
@@ -16,7 +15,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
@@ -33,6 +31,7 @@ import projeto.piloto.projeto_off_web.Database.OffWebDb;
 import projeto.piloto.projeto_off_web.Model.Entidade.Professor;
 import projeto.piloto.projeto_off_web.R;
 import projeto.piloto.projeto_off_web.Sessao;
+import projeto.piloto.projeto_off_web.Util.Util;
 
 public class PerfilFragment extends Fragment {
 
@@ -158,7 +157,12 @@ public class PerfilFragment extends Fragment {
 
       new Thread(() -> {
         offWebDb.professorDao().atualizar(professor);
-      });
+
+        getActivity().runOnUiThread(() -> {
+          Util.exibirDialogMsg(getContext(),"","Perfil atualizado com sucesso.");
+
+        });
+      }).start();
     }else{
       Professor professor = new Professor();
       professor.setNome(edtNome.getText().toString());
@@ -168,10 +172,16 @@ public class PerfilFragment extends Fragment {
       professor.setFoto(caminhoFoto);
 
       new Thread(() -> {
-        Integer id = offWebDb.professorDao().inserir(professor);
-        sessao.getLogin().setProfessor(id);
+        Long id = offWebDb.professorDao().inserir(professor);
+        sessao.getLogin().setProfessor(id.intValue());
         offWebDb.loginDao().atualizar(sessao.getLogin());
-      });
+
+        getActivity().runOnUiThread(() -> {
+          Util.exibirDialogMsg(getContext(),"","Perfil cadastrado com sucesso.");
+          getActivity().finish();
+        });
+
+      }).start();
     }
 
   }

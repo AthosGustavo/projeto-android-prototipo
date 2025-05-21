@@ -68,6 +68,11 @@ public class AlunoActivity extends AppCompatActivity {
     activityAlunoBinding.curso.setText(aluno.getCurso());
     activityAlunoBinding.horasUsoInternetDia.setText(fichaAluno.getHorasUsoInternetDia().toString());
     activityAlunoBinding.descricao.setText(fichaAluno.getDescricao());
+    activityAlunoBinding.respostaPerguntaUm.setText(fichaAluno.getRespostaPerguntaUm());
+    activityAlunoBinding.respostaPerguntaDois.setText(fichaAluno.getRespostaPerguntaDois());
+    activityAlunoBinding.respostaPerguntaTres.setText(fichaAluno.getRespostaPerguntaTres());
+    activityAlunoBinding.respostaPerguntaQuatro.setText(fichaAluno.getRespostaPerguntaQuatro());
+    activityAlunoBinding.respostaPerguntaCinco.setText(fichaAluno.getRespostaPerguntaCinco());
   }
 
   @Override

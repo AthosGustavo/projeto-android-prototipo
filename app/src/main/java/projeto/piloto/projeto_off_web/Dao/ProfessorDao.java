@@ -14,7 +14,7 @@ public interface ProfessorDao {
   Professor buscarPorId(int id);
 
   @Insert
-  Integer inserir(Professor professor);
+  Long inserir(Professor professor);
 
   @Update
   void atualizar(Professor professor);

@@ -8,7 +8,6 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -124,12 +123,12 @@ public class ProfessorLoginFragment extends Fragment {
 
               @Override
               public void onProfessorLoginFailure(String errorMessage) {
-                Util.exibirDialogMsgErro(getContext(),"Atenção", errorMessage);
+                Util.exibirDialogMsg(getContext(),"Atenção", errorMessage);
               }
             });
           }
         }catch(IllegalArgumentException ex){
-          Util.exibirDialogMsgErro(getContext(),"Atenção", "Atenção, os campos de e-mail e senha devem ser preenchidos");
+          Util.exibirDialogMsg(getContext(),"Atenção", "Atenção, os campos de e-mail e senha devem ser preenchidos");
         }
 
         /*try{
@@ -151,18 +150,23 @@ public class ProfessorLoginFragment extends Fragment {
       viewModel.getExecutorService().execute(() -> {
         Login loginEncontrado = offWebDb.loginDao().realizarLogin(email, senha);
 
-        requireActivity().runOnUiThread(() -> {
 
-          if (Objects.nonNull(loginEncontrado)) {
 
+        if (Objects.nonNull(loginEncontrado)) {
             Professor professor = Objects.nonNull(loginEncontrado.getProfessor()) ? offWebDb.professorDao().buscarPorId(loginEncontrado.getProfessor()) : null;
-            sessao.setProfessorLogado(professor);
-            sessao.setLogin(loginEncontrado);
+              sessao.setProfessorLogado(professor);
+              sessao.setLogin(loginEncontrado);
+          requireActivity().runOnUiThread(() -> {
             iProfessorLoginListener.onProfessorLoginSuccess();
-          } else {
+          });
+
+        } else {
+          requireActivity().runOnUiThread(() -> {
             iProfessorLoginListener.onProfessorLoginFailure("E-mail ou senha incorretos");
-          }
-        });
+          });
+
+        }
+
       });
 
 
@@ -178,7 +182,7 @@ public class ProfessorLoginFragment extends Fragment {
 
             if(Objects.nonNull(verificaContaExistente)){
               requireActivity().runOnUiThread(() -> {
-                Util.exibirDialogMsgErro(getContext(),"Atenção", "E-mail já cadastrado");
+                Util.exibirDialogMsg(getContext(),"Atenção", "E-mail já cadastrado");
               });
             }else{
               offWebDb.loginDao().inserir(new Login(email,senha));
@@ -200,12 +204,12 @@ public class ProfessorLoginFragment extends Fragment {
 
         }else{
           requireActivity().runOnUiThread(() -> {
-            Util.exibirDialogMsgErro(getContext(),"Atenção", "As senhas não conferem");
+            Util.exibirDialogMsg(getContext(),"Atenção", "As senhas não conferem");
           });
         }
       }catch (Exception e){
         requireActivity().runOnUiThread(() -> {
-          Util.exibirDialogMsgErro(getContext(),"Atenção", "Erro inesperado");
+          Util.exibirDialogMsg(getContext(),"Atenção", "Erro inesperado");
         });
       }
     });

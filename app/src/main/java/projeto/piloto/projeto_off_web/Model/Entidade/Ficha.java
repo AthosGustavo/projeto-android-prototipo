@@ -12,6 +12,11 @@ public class Ficha {
   private Integer aluno;
   private Float horasUsoInternetDia;
   private String descricao;
+  private String respostaPerguntaUm;
+  private String respostaPerguntaDois;
+  private String respostaPerguntaTres;
+  private String respostaPerguntaQuatro;
+  private String respostaPerguntaCinco;
 
   public Ficha(Integer id, Integer aluno, Float horasUsoInternetDia, String descricao) {
     this.id = id;
@@ -26,10 +31,15 @@ public class Ficha {
   }
 
   @Ignore
-  public Ficha(Float horasUsoInternet,String descricao, Integer aluno) {
+  public Ficha(Float horasUsoInternet,String descricao, Integer aluno,String respostaPerguntaUm,String respostaPerguntaDois,String respostaPerguntaTres,String respostaPerguntaQuatro,String respostaPerguntaCinco) {
     this.horasUsoInternetDia = horasUsoInternet;
     this.aluno = aluno;
     this.descricao = descricao;
+    this.respostaPerguntaUm = respostaPerguntaUm;
+    this.respostaPerguntaDois = respostaPerguntaDois;
+    this.respostaPerguntaTres = respostaPerguntaTres;
+    this.respostaPerguntaQuatro = respostaPerguntaQuatro;
+    this.respostaPerguntaCinco = respostaPerguntaCinco;
   }
 
   public Integer getId() {
@@ -62,5 +72,45 @@ public class Ficha {
 
   public void setDescricao(String descricao) {
     this.descricao = descricao;
+  }
+
+  public String getRespostaPerguntaUm() {
+    return respostaPerguntaUm;
+  }
+
+  public void setRespostaPerguntaUm(String respostaPerguntaUm) {
+    this.respostaPerguntaUm = respostaPerguntaUm;
+  }
+
+  public String getRespostaPerguntaDois() {
+    return respostaPerguntaDois;
+  }
+
+  public void setRespostaPerguntaDois(String respostaPerguntaDois) {
+    this.respostaPerguntaDois = respostaPerguntaDois;
+  }
+
+  public String getRespostaPerguntaTres() {
+    return respostaPerguntaTres;
+  }
+
+  public void setRespostaPerguntaTres(String respostaPerguntaTres) {
+    this.respostaPerguntaTres = respostaPerguntaTres;
+  }
+
+  public String getRespostaPerguntaQuatro() {
+    return respostaPerguntaQuatro;
+  }
+
+  public void setRespostaPerguntaQuatro(String respostaPerguntaQuatro) {
+    this.respostaPerguntaQuatro = respostaPerguntaQuatro;
+  }
+
+  public String getRespostaPerguntaCinco() {
+    return respostaPerguntaCinco;
+  }
+
+  public void setRespostaPerguntaCinco(String respostaPerguntaCinco) {
+    this.respostaPerguntaCinco = respostaPerguntaCinco;
   }
 }

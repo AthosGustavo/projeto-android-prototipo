@@ -33,10 +33,11 @@
         app:cardCornerRadius="16dp"
         app:cardElevation="6dp">
 
-        <RelativeLayout
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="16dp">
+            android:padding="16dp"
+            android:orientation="vertical">
 
             <TextView
                 android:id="@+id/nome_aluno"
@@ -54,6 +55,7 @@
                 android:layout_below="@id/nome_aluno"
                 android:layout_marginTop="8dp"
                 android:text="Curso"
+                android:textStyle="bold"
                 android:textSize="16sp"
                 android:textColor="#444444" />
 
@@ -71,6 +73,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/curso"
+                android:textStyle="bold"
                 android:layout_marginTop="8dp"
                 android:textSize="16sp"
                 android:textColor="#444444"
@@ -89,6 +92,7 @@
                 android:id="@+id/label_descricao"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textStyle="bold"
                 android:layout_below="@id/horas_uso_internet_dia"
                 android:layout_marginTop="8dp"
                 android:textSize="16sp"
@@ -101,11 +105,77 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/label_descricao"
+
                 android:layout_marginTop="8dp"
                 android:textSize="16sp"
                 android:textColor="#666666"
                 android:lineSpacingExtra="4dp" />
-        </RelativeLayout>
+
+            <TextView
+                android:id="@+id/preferencias_aluno"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/label_descricao"
+                android:textStyle="bold"
+                android:layout_marginTop="8dp"
+                android:textSize="16sp"
+                android:textColor="#666666"
+                android:lineSpacingExtra="4dp"
+                android:text="Preferências"/>
+
+            <TextView
+                android:id="@+id/resposta_pergunta_um"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/label_descricao"
+                android:layout_marginTop="8dp"
+                android:textSize="16sp"
+                android:textColor="#666666"
+                android:lineSpacingExtra="4dp"
+                />
+            <TextView
+                android:id="@+id/resposta_pergunta_dois"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/label_descricao"
+                android:layout_marginTop="8dp"
+                android:textSize="16sp"
+                android:textColor="#666666"
+                android:lineSpacingExtra="4dp"
+                />
+            <TextView
+                android:id="@+id/resposta_pergunta_tres"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/label_descricao"
+                android:layout_marginTop="8dp"
+                android:textSize="16sp"
+                android:textColor="#666666"
+                android:lineSpacingExtra="4dp"
+                />
+            <TextView
+                android:id="@+id/resposta_pergunta_quatro"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/label_descricao"
+                android:layout_marginTop="8dp"
+                android:textSize="16sp"
+                android:textColor="#666666"
+                android:lineSpacingExtra="4dp"
+                />
+            <TextView
+                android:id="@+id/resposta_pergunta_cinco"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/label_descricao"
+                android:layout_marginTop="8dp"
+                android:textSize="16sp"
+                android:textColor="#666666"
+                android:lineSpacingExtra="4dp"
+                />
+
+
+        </LinearLayout>
     </com.google.android.material.card.MaterialCardView>
 
 </LinearLayout>

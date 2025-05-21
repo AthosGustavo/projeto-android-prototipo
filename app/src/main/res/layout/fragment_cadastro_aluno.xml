@@ -1,47 +1,248 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<ScrollView
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.Fragment.Login.AlunoCadastroFragment"
-    android:orientation="vertical">
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:fillViewport="true">
 
-    <EditText
-        android:id="@+id/nome_aluno"
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Nome completo"/>
+        android:layout_height="match_parent"
+        tools:context=".ui.Fragment.Login.AlunoCadastroFragment"
+        android:orientation="vertical">
 
-    <EditText
-        android:id="@+id/curso"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Curso"/>
+        <EditText
+            android:id="@+id/nome_aluno"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Nome completo"/>
 
-    <EditText
-        android:id="@+id/horas_uso_internet"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Horas de uso de internet por dia"/>
+        <EditText
+            android:id="@+id/curso"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Curso"/>
 
-    <EditText
-        android:id="@+id/codigo_turma"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Código da turma"/>
+        <EditText
+            android:id="@+id/horas_uso_internet"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Horas de uso de internet por dia"/>
 
-    <EditText
-        android:id="@+id/descricao"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:minHeight="300dp"
-        android:gravity="top"
-        android:hint="Conte as suas dificuldades relacionadas ao seu desempenho escolar"/>
+        <!-- res/layout/spinner_hint.xml -->
+        <TextView xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Escolher turma"
+            />
 
-    <Button
-        android:id="@+id/btn_cadastrar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Cadastrar"/>
+        <Spinner
+            android:id="@+id/codigo_turma"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            />
 
-</LinearLayout>
+        <EditText
+            android:id="@+id/descricao"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="300dp"
+            android:gravity="top"
+            android:hint="Conte as suas dificuldades relacionadas ao seu desempenho escolar"/>
+
+        <TextView
+            android:id="@+id/question1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="1. Como você se sente quando está longe da internet por um período prolongado?"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="8dp" />
+
+        <RadioGroup
+            android:id="@+id/pergunta_um"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Ansioso(a) ou inquieto(a) quando está longe da internet" />
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tranquilo(a) e aliviado(a) quando está longe da internet" />
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Entediado(a) quando está longe da internet" />
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Mais produtivo(a) quando está longe da internet" />
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Indiferente, não faz diferença para mim quando estou longe da internet" />
+        </RadioGroup>
+
+        <!-- Pergunta 2 -->
+        <TextView
+            android:id="@+id/question2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="2. Você prefere atividades que envolvem interação social ou atividades mais individuais?"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="8dp" />
+
+        <RadioGroup
+            android:id="@+id/pergunta_dois"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Prefiro atividades em grupo e com amigos" />
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Gosto de atividades com poucas pessoas próximas" />
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Prefiro ficar sozinho(a), com meus pensamentos ou hobbies" />
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Gosto de fazer atividades com ou sem interação social a depender do meu humor" />
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Não tenho preferência por fazer atividades com ou sem interação social" />
+        </RadioGroup>
+
+        <!-- Pergunta 3 -->
+        <TextView
+            android:id="@+id/question3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="3. O que costuma te motivar a se desconectar da internet?"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="8dp" />
+
+        <RadioGroup
+            android:id="@+id/pergunta_tres"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tempo com a família ou amigos me motiva a se desconectar da internet" />
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Prática de atividades físicas ou esportes me motiva a se desconectar da internet" />
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Leitura, estudos ou trabalho presencial me motiva a se desconectar da internet" />
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Sensação de cansaço ou estresse digital me motiva a se desconectar da internet" />
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Não costumo me desconectar da internet" />
+        </RadioGroup>
+
+        <!-- Pergunta 4 -->
+        <TextView
+            android:id="@+id/question4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="4. Quais situações ou atividades te ajudam a reduzir o uso da internet?"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="8dp" />
+
+        <RadioGroup
+            android:id="@+id/pergunta_quatro"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Viagens ou passeios ao ar livre me ajudam a reduzir o uso da internet" />
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Atividades culturais (cinema, teatro, música) me ajudam a reduzir o uso da internet" />
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Estudos ou foco em tarefas específicas me ajudam a reduzir o uso da internet" />
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Momentos de autocuidado (descanso, meditação, etc.) me ajudam a reduzir o uso da internet" />
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Nenhuma, estou quase sempre online" />
+        </RadioGroup>
+
+        <!-- Pergunta 5 -->
+        <TextView
+            android:id="@+id/question5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="5. Quais experiências offline você considera mais gratificantes do que as online?"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="8dp" />
+
+        <RadioGroup
+            android:id="@+id/pergunta_cinco"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Conversas e momentos com pessoas queridas ao invés de estar conectado"
+                />
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Conquistas pessoais (como estudar, aprender algo novo) ao invés de estar conectado" />
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Contato com a natureza ou atividades ao ar livre ao invés de estar conectado" />
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Praticar um hobby criativo (artesanato, música, desenho) ao invés de estar conectado" />
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Nenhuma, prefiro experiências online" />
+        </RadioGroup>
+
+        <Button
+            android:id="@+id/btn_cadastrar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Cadastrar"/>
+
+    </LinearLayout>
+
+
+</ScrollView>

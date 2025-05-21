@@ -49,4 +49,9 @@ public class Turma implements Serializable {
     this.professor = professor;
   }
 
+  @Override
+  public String toString() {
+    return nome;
+  }
+
 }

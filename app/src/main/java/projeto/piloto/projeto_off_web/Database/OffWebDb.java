@@ -23,7 +23,7 @@ import projeto.piloto.projeto_off_web.Model.Entidade.Professor;
 import projeto.piloto.projeto_off_web.Model.Entidade.Turma;
 import projeto.piloto.projeto_off_web.Model.Entidade.TurmaAluno;
 
-@Database(entities = {Aluno.class, Ficha.class, Professor.class, Turma.class, Material.class,TurmaAluno.class, Login.class}, version = 5)
+@Database(entities = {Aluno.class, Ficha.class, Professor.class, Turma.class, Material.class,TurmaAluno.class, Login.class}, version = 6)
 public abstract class OffWebDb extends RoomDatabase {
 
 

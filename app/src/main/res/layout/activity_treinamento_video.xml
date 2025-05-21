@@ -1,8 +1,10 @@
+<!-- Exemplo para activity_treinamento_video.xml -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical" android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    >
+    android:background="@color/background_app">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBar"
@@ -16,12 +18,24 @@
             android:layout_height="?attr/actionBarSize"
             android:background="@color/white"
             app:navigationIcon="@android:drawable/ic_menu_revert"
-            app:title="Treinamento"
+            app:title="Treinamento em Vídeo"
             app:titleTextColor="@android:color/black"/>
     </com.google.android.material.appbar.AppBarLayout>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView"
+    <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_margin="16dp"
+        app:cardElevation="3dp"
+        app:cardCornerRadius="16dp"
+        app:cardBackgroundColor="@android:color/white">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="8dp"
+            android:clipToPadding="false"/>
+    </androidx.cardview.widget.CardView>
 </LinearLayout>

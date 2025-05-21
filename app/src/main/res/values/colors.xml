@@ -13,5 +13,6 @@
     <color name="colorOnBackground">#2C3E50</color>
     <color name="colorOnSurface">#2C3E50</color>
     <color name="colorError">#E74C3C</color>
+    <color name="background_app">#F5F8FB</color>
 
 </resources>

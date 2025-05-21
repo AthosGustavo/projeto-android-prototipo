@@ -24,6 +24,8 @@ public class CriarTurmaActivity extends AppCompatActivity {
   private OffWebDb offWebDb;
   private ViewModel viewModel;
   private Sessao sessao;
+  private EditText quantidadeAlunos;
+  private EditText periodo;
   //private Professor professor = new Professor(1,"Alberto Silva","Direito Administrativo");
 
 
@@ -38,7 +40,8 @@ public class CriarTurmaActivity extends AppCompatActivity {
 
     nomeTurma = findViewById(R.id.nomeTurma);
     btnCriarTurma = findViewById(R.id.btnCriarTurma);
-
+    quantidadeAlunos = findViewById(R.id.quantidade_alunos);
+    periodo = findViewById(R.id.periodo);
     offWebDb = OffWebDb.getInstance(this);
 
     configuraBtnCriarTurma();
@@ -59,7 +62,11 @@ public class CriarTurmaActivity extends AppCompatActivity {
       System.out.println("teste");
       new Thread(() -> {
         offWebDb.turmaDao().inserir(
-                new Turma(nomeTurma.getText().toString(), sessao.getProfessorLogado().getId())
+                new Turma(
+                        nomeTurma.getText().toString(),
+                        sessao.getProfessorLogado().getId(),
+                        Integer.valueOf(quantidadeAlunos.getText().toString()),
+                        Integer.valueOf(periodo.getText().toString()))
         );
       }).start();
       finish(); // Fecha a Activity e retorna ao fragmento anterior

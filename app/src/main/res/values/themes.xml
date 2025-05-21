@@ -3,7 +3,7 @@
     <!-- Tema principal da sua aplicação -->
     <style name="Theme.ProjetoOffWeb" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Cor de fundo da Activity -->
-        <item name="android:windowBackground">@color/white</item>
+        <item name="android:windowBackground">@color/background_app</item>
 
 
         <!-- Cor primária do app (ex: AppBar, botão principal) -->

@@ -13,11 +13,15 @@ public class Turma implements Serializable {
   private Integer id;
   private String nome;
   private Integer professor;
+  private Integer quantidadeAlunos;
+  private Integer periodo;
 
 
-  public Turma(String nome, Integer professor) {
+  public Turma(String nome, Integer professor, Integer quantidadeAlunos, Integer periodo) {
     this.nome = nome;
     this.professor = professor;
+    this.quantidadeAlunos = quantidadeAlunos;
+    this.periodo = periodo;
   }
 
   @Ignore
@@ -54,4 +58,20 @@ public class Turma implements Serializable {
     return nome;
   }
 
+
+  public Integer getQuantidadeAlunos() {
+    return quantidadeAlunos;
+  }
+
+  public void setQuantidadeAlunos(Integer quantidadeAlunos) {
+    this.quantidadeAlunos = quantidadeAlunos;
+  }
+
+  public Integer getPeriodo() {
+    return periodo;
+  }
+
+  public void setPeriodo(Integer periodo) {
+    this.periodo = periodo;
+  }
 }

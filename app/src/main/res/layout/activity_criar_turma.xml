@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/white"
-    android:id="@+id/main">
+    android:background="@color/background_app">
 
     <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/appBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:theme="@style/Theme.ProjetoOffWeb">
@@ -17,29 +16,102 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="@color/white"
-            app:navigationIcon="@android:drawable/ic_menu_revert"
             app:title="Criar Turma"
-            app:titleTextColor="@android:color/black"/>
+            app:titleTextColor="@android:color/black"
+            app:navigationIcon="@android:drawable/ic_menu_revert"/>
     </com.google.android.material.appbar.AppBarLayout>
 
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_below="@id/appBar"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="24dp">
+        android:layout_height="match_parent"
+        android:fillViewport="true">
 
-        <EditText
-            android:id="@+id/nomeTurma"
+        <LinearLayout
+            android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Nome da Turma"/>
+            android:padding="24dp">
 
-        <Button
-            android:id="@+id/btnCriarTurma"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Criar Turma"
-            android:layout_marginTop="16dp"/>
-    </LinearLayout>
-</RelativeLayout>
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                app:cardElevation="4dp"
+                app:cardCornerRadius="16dp"
+                app:cardBackgroundColor="@android:color/white">
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="24dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Nome da Turma"
+                        android:textColor="#1976D2"
+                        android:textStyle="bold"
+                        android:textSize="16sp"
+                        android:layout_marginBottom="8dp"/>
+
+                    <EditText
+                        android:id="@+id/nomeTurma"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Digite o nome da turma"
+                        android:backgroundTint="#1976D2"
+                        android:padding="12dp"
+                        android:layout_marginBottom="16dp"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Quantidade de alunos"
+                        android:textColor="#1976D2"
+                        android:textStyle="bold"
+                        android:textSize="16sp"
+                        android:layout_marginBottom="8dp"/>
+
+                    <EditText
+                        android:id="@+id/quantidade_alunos"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Digite a quantidade de alunos"
+                        android:inputType="number"
+                        android:backgroundTint="#1976D2"
+                        android:padding="12dp"
+                        android:layout_marginBottom="16dp"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Período"
+                        android:textColor="#1976D2"
+                        android:textStyle="bold"
+                        android:textSize="16sp"
+                        android:layout_marginBottom="8dp"/>
+
+                    <EditText
+                        android:id="@+id/periodo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Digite o período"
+                        android:backgroundTint="#1976D2"
+                        android:padding="12dp"
+                        android:layout_marginBottom="20dp"/>
+
+                    <Button
+                        android:id="@+id/btnCriarTurma"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Criar Turma"
+                        android:backgroundTint="#1976D2"
+                        android:textColor="@android:color/white"
+                        android:textStyle="bold"
+                        android:padding="14dp"/>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

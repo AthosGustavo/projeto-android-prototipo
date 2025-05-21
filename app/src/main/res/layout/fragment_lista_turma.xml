@@ -4,25 +4,41 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/lista_turma_activity"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
+    android:background="#F5F8FB"
     tools:context=".ui.Activity.TurmaActivity">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler_view_lista_turma"
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card_lista_turma"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/cardview_shadow_end_color"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        tools:listitem="@layout/item_turma" />
+        android:layout_margin="16dp"
+        android:layout_alignParentTop="true"
+        app:cardElevation="4dp"
+        app:cardCornerRadius="12dp"
+        app:cardBackgroundColor="@android:color/white">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_view_lista_turma"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            android:clipToPadding="false"
+            tools:listitem="@layout/item_turma" />
+    </androidx.cardview.widget.CardView>
 
     <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
         android:id="@+id/btn_criar_turma"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="CRIAR TURMA"
+        android:textStyle="bold"
         android:layout_alignParentEnd="true"
         android:layout_marginTop="660dp"
-        android:layout_marginEnd="25dp"
-        android:text="CRIAR TURMA"
-        app:rippleColor="@android:color/darker_gray" />
+        android:textColor="@android:color/white"
+        android:backgroundTint="#1976D2"
+        app:rippleColor="@android:color/darker_gray"
+        app:iconTint="@android:color/white"
+        android:elevation="4dp"/>
 
 </RelativeLayout>

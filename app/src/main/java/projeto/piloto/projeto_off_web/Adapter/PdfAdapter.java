@@ -8,6 +8,8 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
+import projeto.piloto.projeto_off_web.R;
+
 public class PdfAdapter extends RecyclerView.Adapter<PdfAdapter.ViewHolder> {
 
     public interface OnItemClickListener {
@@ -25,9 +27,8 @@ public class PdfAdapter extends RecyclerView.Adapter<PdfAdapter.ViewHolder> {
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext())
-                .inflate(android.R.layout.simple_list_item_1, parent, false);
-        return new ViewHolder(v);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_arquivo, parent, false);
+        return new ViewHolder(view);
     }
 
     @Override
@@ -46,7 +47,7 @@ public class PdfAdapter extends RecyclerView.Adapter<PdfAdapter.ViewHolder> {
         TextView textView;
         ViewHolder(View itemView) {
             super(itemView);
-            textView = itemView.findViewById(android.R.id.text1);
+            textView = itemView.findViewById(R.id.text1);
         }
     }
 }

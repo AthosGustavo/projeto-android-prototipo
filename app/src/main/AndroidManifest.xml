@@ -41,7 +41,7 @@
         <activity
             android:name=".ui.Activity.TelaPrincipalActivity"
             android:exported="false" />
-       <!-- <activity
+     <!--   <activity
             android:name=".ui.Activity.LoginActivity"
             android:exported="false" />-->
         <activity

@@ -178,7 +178,7 @@ public class PerfilFragment extends Fragment {
 
         getActivity().runOnUiThread(() -> {
           Util.exibirDialogMsg(getContext(),"","Perfil cadastrado com sucesso.");
-          getActivity().finish();
+
         });
 
       }).start();

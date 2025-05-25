@@ -39,6 +39,11 @@ public class ListaAlunosActivity extends AppCompatActivity {
     getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
     configuraRecyclerView();
+
+    findViewById(R.id.btn_adc_materiais).setOnClickListener(v -> {
+      Intent intent = new Intent(this, ListaMateriaisActivity.class);
+      startActivity(intent);
+    });
   }
 
   private void configuraRecyclerView() {

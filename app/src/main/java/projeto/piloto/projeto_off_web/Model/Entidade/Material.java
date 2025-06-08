@@ -1,5 +1,7 @@
 package projeto.piloto.projeto_off_web.Model.Entidade;
 
+import android.net.Uri;
+
 import androidx.room.Entity;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
@@ -9,17 +11,16 @@ public class Material {
 
   @PrimaryKey
   private Integer id;
+  private String nome;
   private Integer turma;
-  private String camingoArquivo;
-  private String caminhoImagem;
-  private String caminhoVideo;
+  private String uri;
 
-  public Material(Integer id, Integer turma, String camingoArquivo, String caminhoImagem, String caminhoVideo) {
-    this.id = id;
+
+  public Material(String nome,Integer turma, String uri) {
+    this.nome = nome;
     this.turma = turma;
-    this.camingoArquivo = camingoArquivo;
-    this.caminhoImagem = caminhoImagem;
-    this.caminhoVideo = caminhoVideo;
+    this.uri = uri.toString();
+
   }
 
   @Ignore
@@ -43,27 +44,20 @@ public class Material {
     this.turma = turma;
   }
 
-  public String getCamingoArquivo() {
-    return camingoArquivo;
+  public String getUri() {
+    return uri.toString();
   }
 
-  public void setCamingoArquivo(String camingoArquivo) {
-    this.camingoArquivo = camingoArquivo;
+  public void setUri(Uri uri) {
+    this.uri = uri.toString();
   }
 
-  public String getCaminhoImagem() {
-    return caminhoImagem;
+  public String getNome() {
+    return nome;
   }
 
-  public void setCaminhoImagem(String caminhoImagem) {
-    this.caminhoImagem = caminhoImagem;
+  public void setNome(String nome) {
+    this.nome = nome;
   }
 
-  public String getCaminhoVideo() {
-    return caminhoVideo;
-  }
-
-  public void setCaminhoVideo(String caminhoVideo) {
-    this.caminhoVideo = caminhoVideo;
-  }
 }

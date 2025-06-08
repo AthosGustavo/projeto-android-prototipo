@@ -23,7 +23,7 @@ import projeto.piloto.projeto_off_web.Model.Entidade.Professor;
 import projeto.piloto.projeto_off_web.Model.Entidade.Turma;
 import projeto.piloto.projeto_off_web.Model.Entidade.TurmaAluno;
 
-@Database(entities = {Aluno.class, Ficha.class, Professor.class, Turma.class, Material.class,TurmaAluno.class, Login.class}, version = 7)
+@Database(entities = {Aluno.class, Ficha.class, Professor.class, Turma.class, Material.class,TurmaAluno.class, Login.class}, version = 8)
 public abstract class OffWebDb extends RoomDatabase {
 
 
@@ -31,7 +31,7 @@ public abstract class OffWebDb extends RoomDatabase {
   public abstract FichaDao fichaDao();
   public abstract AlunoDao alunoDao();
   public abstract ProfessorDao professorDao();
-  public abstract MaterialDao MaterialDao();
+  public abstract MaterialDao materialDao();
   public abstract TurmaDao turmaDao();
   public abstract TurmaAlunoDao turmaAlunoDao();
   public abstract LoginDao loginDao();

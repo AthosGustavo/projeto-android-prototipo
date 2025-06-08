@@ -17,6 +17,15 @@ public class Turma implements Serializable {
   private Integer periodo;
 
 
+  public Turma(Integer id,String nome, Integer professor, Integer quantidadeAlunos, Integer periodo) {
+    this.id = id;
+    this.nome = nome;
+    this.professor = professor;
+    this.quantidadeAlunos = quantidadeAlunos;
+    this.periodo = periodo;
+  }
+
+  @Ignore
   public Turma(String nome, Integer professor, Integer quantidadeAlunos, Integer periodo) {
     this.nome = nome;
     this.professor = professor;

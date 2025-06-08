@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import projeto.piloto.projeto_off_web.Adapter.ListaAlunosAdapter;
 import projeto.piloto.projeto_off_web.Database.OffWebDb;
 
+import projeto.piloto.projeto_off_web.Model.Entidade.Turma;
 import projeto.piloto.projeto_off_web.R;
 import projeto.piloto.projeto_off_web.ViewModel.ViewModel;
 import projeto.piloto.projeto_off_web.databinding.ActivityListaAlunosBinding;
@@ -24,6 +25,7 @@ public class ListaAlunosActivity extends AppCompatActivity {
   private ViewModel viewModel;
   private ListaAlunosAdapter listaAlunosAdapter;
   private OffWebDb offWebDb;
+  private Turma turma;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -40,10 +42,15 @@ public class ListaAlunosActivity extends AppCompatActivity {
 
     configuraRecyclerView();
 
+    Intent intent = getIntent();
+    turma = (Turma) intent.getSerializableExtra("turma");
+
     findViewById(R.id.btn_adc_materiais).setOnClickListener(v -> {
-      Intent intent = new Intent(this, ListaMateriaisActivity.class);
-      startActivity(intent);
+      Intent intentListaMateriaisActivity = new Intent(this, ListaMateriaisActivity.class);
+      intentListaMateriaisActivity.putExtra("turma",turma);
+      startActivity(intentListaMateriaisActivity);
     });
+
   }
 
   private void configuraRecyclerView() {

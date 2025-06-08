@@ -47,6 +47,9 @@
         android:layout_marginEnd="25dp"
         android:text="MATERIAIS"
         android:textAlignment="center"
-        app:rippleColor="@android:color/darker_gray" />
+        android:textColor="@android:color/white"
+        android:backgroundTint="#1976D2"
+        app:rippleColor="@android:color/darker_gray"
+        app:iconTint="@android:color/white" />
 
 </RelativeLayout>

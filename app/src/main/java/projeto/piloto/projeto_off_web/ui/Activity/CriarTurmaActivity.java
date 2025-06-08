@@ -59,7 +59,7 @@ public class CriarTurmaActivity extends AppCompatActivity {
 
   public void configuraBtnCriarTurma(){
     btnCriarTurma.setOnClickListener(v -> {
-      System.out.println("teste");
+
       new Thread(() -> {
         offWebDb.turmaDao().inserir(
                 new Turma(

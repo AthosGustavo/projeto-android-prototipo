@@ -98,9 +98,12 @@ public class ListaTurmaFragment extends Fragment {
   public void onResume() {
     super.onResume();
     new Thread(() -> {
-      List<Turma> turmas = offWebDb.turmaDao().buscarTurmas();
+      List<Turma> turmas = offWebDb.turmaDao().buscarTurmasPorProfessor(sessao.getProfessorLogado().getId());
       requireActivity().runOnUiThread(() -> {
-        listaTurmaAdapter.atualizar(turmas); // Atualiza a lista e notifica o adapter
+        if(Objects.nonNull(listaTurmaAdapter)){
+          listaTurmaAdapter.atualizar(turmas); // Atualiza a lista e notifica o adapter
+        }
+
       });
     }).start();
   }
@@ -109,14 +112,16 @@ public class ListaTurmaFragment extends Fragment {
     RecyclerView recyclerView = fragmentListaTurmaBinding.recyclerViewListaTurma;
 
     viewModel.getExecutorService().execute(() -> {
-      listaTurmaAdapter = new ListaTurmaAdapter(getContext(), offWebDb.turmaDao().buscarTurmas(), new ListaTurmaAdapter.OnItemClickListener() {
-        @Override
-        public void onItemClick(Turma turma) {
-          Intent intent = new Intent(getContext(), ListaAlunosActivity.class);
-          intent.putExtra("turma", turma);
-          startActivity(intent);
-        }
-      });
+      if(Objects.nonNull(sessao.getProfessorLogado())){
+        listaTurmaAdapter = new ListaTurmaAdapter(getContext(), offWebDb.turmaDao().buscarTurmasPorProfessor(sessao.getProfessorLogado().getId()), new ListaTurmaAdapter.OnItemClickListener() {
+          @Override
+          public void onItemClick(Turma turma) {
+            Intent intent = new Intent(getContext(), ListaAlunosActivity.class);
+            intent.putExtra("turma", turma);
+            startActivity(intent);
+          }
+        });
+      }
 
       requireActivity().runOnUiThread(() -> {
         recyclerView.setAdapter(listaTurmaAdapter);

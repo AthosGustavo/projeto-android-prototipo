@@ -175,6 +175,13 @@ public class AlunoCadastroFragment extends Fragment {
 
     Util.exibirDialogMsg(getContext(),"","Aluno cadastrado com sucesso !");
     iComunicacaoTelaPrincipal.chamaTelaLoginProfessor();
+
+    fragmentCadastroAlunoBinding.nomeAluno.setText(null);
+    fragmentCadastroAlunoBinding.curso.setText(null);
+    fragmentCadastroAlunoBinding.horasUsoInternet.setText(null);
+    fragmentCadastroAlunoBinding.descricao.setText(null);
+
+
   }
 
   public void carregarTurmas(){

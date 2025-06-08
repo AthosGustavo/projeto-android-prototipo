@@ -1,6 +1,7 @@
 package projeto.piloto.projeto_off_web.Dao;
 
 import androidx.room.Dao;
+import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
 
@@ -16,4 +17,7 @@ public interface MaterialDao {
 
   @Query("SELECT * FROM materiais WHERE turma = :turma")
   List<Material> buscarMaterialPorTurma(Integer turma);
+
+  @Delete
+  void remover(Material material);
 }

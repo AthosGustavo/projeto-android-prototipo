@@ -2,6 +2,8 @@ package projeto.piloto.projeto_off_web.ui.Activity;
 
 import static android.content.Intent.FLAG_GRANT_READ_URI_PERMISSION;
 
+import static java.security.AccessController.getContext;
+
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -100,6 +102,7 @@ public class ListaMateriaisActivity extends AppCompatActivity {
 
         runOnUiThread(() -> {
           // Atualiza a lista de materiais
+          Toast.makeText(ListaMateriaisActivity.this, "Material Adicionado", Toast.LENGTH_SHORT).show();
           configuraRecyclerView();
         });
       }).start();

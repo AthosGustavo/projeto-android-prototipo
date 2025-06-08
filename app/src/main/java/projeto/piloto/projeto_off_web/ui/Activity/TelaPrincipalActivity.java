@@ -2,10 +2,12 @@ package projeto.piloto.projeto_off_web.ui.Activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
@@ -17,6 +19,7 @@ import projeto.piloto.projeto_off_web.Model.Entidade.Professor;
 import projeto.piloto.projeto_off_web.R;
 import projeto.piloto.projeto_off_web.ViewModel.ViewModel;
 import projeto.piloto.projeto_off_web.databinding.ActivityTelaPrincipalBinding;
+import projeto.piloto.projeto_off_web.ui.Fragment.Login.ProfessorLoginFragment;
 import projeto.piloto.projeto_off_web.ui.Fragment.Login.ProfessorLoginFragment.IComunicacaoTelaPrincipal;
 import projeto.piloto.projeto_off_web.ui.Fragment.PerfilFragment;
 import projeto.piloto.projeto_off_web.ui.Fragment.TreinamentoFragment;
@@ -53,6 +56,10 @@ public class TelaPrincipalActivity extends AppCompatActivity  implements IListaT
     activityTelaPrincipalBinding.btnMenuTreinamento.setOnClickListener(listener);
     setFragment(listaTurmaFragment);
 
+    Toolbar toolbar = findViewById(R.id.toolbar);
+    setSupportActionBar(toolbar);
+    getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
   }
 
   private void setFragment(Fragment fragment){
@@ -77,5 +84,23 @@ public class TelaPrincipalActivity extends AppCompatActivity  implements IListaT
   @Override
   public void chamarAbaPerfil() {
     setFragment(perfilFragment);
+  }
+
+  @Override
+  public boolean onOptionsItemSelected(MenuItem item) {
+    // Quando o ícone de navegação (ic_deslogar) é clicado
+    if (item.getItemId() == android.R.id.home) {
+      // Implementar o logout
+      // Limpar dados de sessão, preferências, etc. se necessário
+
+      // Navegar para a tela de login
+      Intent intent = new Intent(this, LoginActivity.class); // Substitua pelo nome correto da sua Activity de login
+      intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK); // Limpa pilha de activities
+      startActivity(intent);
+      finish(); // Encerra a activity atual
+      return true;
+    }
+
+    return super.onOptionsItemSelected(item);
   }
 }

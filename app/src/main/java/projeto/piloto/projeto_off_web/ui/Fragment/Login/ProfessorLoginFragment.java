@@ -88,6 +88,9 @@ public class ProfessorLoginFragment extends Fragment {
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
     fragmentProfessorLoginBinding = FragmentProfessorLoginBinding.inflate(inflater,container,false);
+    fragmentProfessorLoginBinding.inputEmail.setText(null);
+    fragmentProfessorLoginBinding.inputSenha.setText(null);
+    fragmentProfessorLoginBinding.inputConfirmarSenha.setText(null);
     clickAindaNaoTemConta();
     configuraBtnEntrarCadastrar();
 

@@ -69,7 +69,7 @@ public class ListaTurmaAdapter extends RecyclerView.Adapter<ListaTurmaAdapter.Vi
 
     public void vincula(Turma turma,String codigo, String periodoTurma){
       this.nome.setText("Turma: " + turma.getNome());
-      this.periodo.setText("Perído: " + periodoTurma);
+      this.periodo.setText("Período: " + periodoTurma);
       this.codigo.setText("Código: " + codigo);
     }
 
@@ -85,6 +85,7 @@ public class ListaTurmaAdapter extends RecyclerView.Adapter<ListaTurmaAdapter.Vi
   }
 
   public void atualizar(List<Turma> turmas) {
+
     this.listaTurmas.clear();
     this.listaTurmas.addAll(turmas);
 

@@ -40,7 +40,7 @@ public class ListaAlunosActivity extends AppCompatActivity {
     setSupportActionBar(toolbar);
     getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-    configuraRecyclerView();
+
 
     Intent intent = getIntent();
     turma = (Turma) intent.getSerializableExtra("turma");
@@ -50,7 +50,7 @@ public class ListaAlunosActivity extends AppCompatActivity {
       intentListaMateriaisActivity.putExtra("turma",turma);
       startActivity(intentListaMateriaisActivity);
     });
-
+    configuraRecyclerView();
   }
 
   private void configuraRecyclerView() {
@@ -59,7 +59,7 @@ public class ListaAlunosActivity extends AppCompatActivity {
     viewModel.getExecutorService().execute(() -> {
       listaAlunosAdapter = new ListaAlunosAdapter(
               this,
-              offWebDb.turmaAlunoDao().buscarAlunos(),
+              offWebDb.turmaAlunoDao().buscarAlunos(turma.getId()),
               aluno -> {
                 Intent intent = new Intent(this, AlunoActivity.class);
                 intent.putExtra("aluno", aluno);

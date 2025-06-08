@@ -13,8 +13,9 @@ import projeto.piloto.projeto_off_web.Model.Entidade.TurmaAluno;
 public interface TurmaAlunoDao {
 
   @Query("SELECT al.* FROM alunos AS al " +
-          "INNER JOIN turmasAlunos AS tl ON al.id = tl.aluno")
-  List<Aluno> buscarAlunos();
+          "INNER JOIN turmasAlunos AS tl ON al.id = tl.aluno " +
+          "WHERE tl.turma = :idTurma")
+  List<Aluno> buscarAlunos(Integer idTurma);
 
   @Insert
   void inserir(TurmaAluno turmaAluno);

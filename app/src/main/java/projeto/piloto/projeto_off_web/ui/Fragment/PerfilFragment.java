@@ -156,12 +156,16 @@ public class PerfilFragment extends Fragment {
   }
 
   private void salvarDados() {
-    if(Objects.nonNull(professor)){
+    if(Objects.nonNull(professor) && Objects.nonNull(professor.getId()) && professor.getId() > 0){
       professor.setNome(edtNome.getText().toString());
       professor.setSobrenome(edtSobrenome.getText().toString());
       professor.setIdade(Integer.valueOf(edtIdade.getText().toString()));
       professor.setDisciplina(edtDisciplina.getText().toString());
-      professor.setFoto(caminhoFoto);
+
+      if(Objects.nonNull(caminhoFoto)){
+        professor.setFoto(caminhoFoto);
+      }
+
 
       new Thread(() -> {
         offWebDb.professorDao().atualizar(professor);
@@ -171,27 +175,47 @@ public class PerfilFragment extends Fragment {
 
         });
       }).start();
-    }else{
-      Professor professor = new Professor();
-      professor.setNome(edtNome.getText().toString());
-      professor.setSobrenome(edtSobrenome.getText().toString());
-      professor.setIdade(Integer.valueOf(edtIdade.getText().toString()));
-      professor.setDisciplina(edtDisciplina.getText().toString());
-      professor.setFoto(caminhoFoto);
+    }else {
+      final Professor novoProfessor = new Professor();
+      novoProfessor.setNome(edtNome.getText().toString());
+      novoProfessor.setSobrenome(edtSobrenome.getText().toString());
+      novoProfessor.setIdade(Integer.valueOf(edtIdade.getText().toString()));
+      novoProfessor.setDisciplina(edtDisciplina.getText().toString());
 
-      new Thread(() -> {
-        Long id = offWebDb.professorDao().inserir(professor);
-        sessao.getLogin().setProfessor(id.intValue());
-        offWebDb.loginDao().atualizar(sessao.getLogin());
+      if (Objects.nonNull(caminhoFoto)) {
+        novoProfessor.setFoto(caminhoFoto);
+      }
 
-        getActivity().runOnUiThread(() -> {
-          Util.exibirDialogMsg(getContext(),"","Perfil cadastrado com sucesso.");
+      Thread thread = new Thread(() -> {
+        try {
+          // Inserir o professor e obter o ID
+          Long id = offWebDb.professorDao().inserir(novoProfessor);
+          if (id != null && id > 0) {
+            // Atualizar a entidade com o ID gerado
+            novoProfessor.setId(id.intValue());
 
-        });
+            // Atualizar o login e a sessão
+            sessao.getLogin().setProfessor(id.intValue());
+            offWebDb.loginDao().atualizar(sessao.getLogin());
 
-      }).start();
+            // Atualizar a UI
+            getActivity().runOnUiThread(() -> {
+              sessao.setProfessorLogado(novoProfessor);
+              //Util.exibirDialogMsg(getContext(), "", "Perfil cadastrado com sucesso. ID: " + id);
+            });
+          } else {
+            getActivity().runOnUiThread(() -> {
+              Util.exibirDialogMsg(getContext(), "Erro", "Falha ao gerar ID para o professor");
+            });
+          }
+        } catch (Exception e) {
+          getActivity().runOnUiThread(() -> {
+            Util.exibirDialogMsg(getContext(), "Erro", "Erro ao salvar professor: " + e.getMessage());
+          });
+        }
+      });
 
-      sessao.setProfessorLogado(professor);
+      thread.start();
     }
 
   }

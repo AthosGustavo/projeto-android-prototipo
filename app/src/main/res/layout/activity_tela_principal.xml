@@ -8,13 +8,31 @@
     tools:context=".ui.Activity.TelaPrincipalActivity"
     android:orientation="vertical">
 
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/app_bar_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/Theme.ProjetoOffWeb"
+        android:layout_alignParentTop="true">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/white"
+            app:title="OffWeb"
+            app:titleMarginStart="110dp"
+            app:titleTextColor="@android:color/black"
+            app:navigationIcon="@drawable/ic_deslogar"/>
+    </com.google.android.material.appbar.AppBarLayout>
+
     <FrameLayout
         android:id="@+id/container_tela_principal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
+        android:layout_height="match_parent"
+        android:layout_below="@+id/app_bar_layout"
+        android:layout_above="@+id/container_btns_menu">
     </FrameLayout>
-
 
     <LinearLayout
         android:id="@+id/container_btns_menu"
@@ -47,7 +65,5 @@
             android:layout_weight="1"
             android:background="@color/white"
             android:src="@drawable/ic_menu_person"/>
-
     </LinearLayout>
-
 </RelativeLayout>

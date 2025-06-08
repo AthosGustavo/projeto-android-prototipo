@@ -16,4 +16,9 @@ public interface TurmaDao {
 
   @Query("SELECT * FROM turmas")
   List<Turma> buscarTurmas();
+
+  @Query("SELECT tur.* FROM turmas AS tur " +
+          "INNER JOIN professores AS prof on tur.professor = prof.id " +
+          "WHERE prof.id = :idProfessor")
+  List<Turma> buscarTurmasPorProfessor(Integer idProfessor);
 }

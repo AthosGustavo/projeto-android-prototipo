@@ -140,10 +140,18 @@ public class PerfilFragment extends Fragment {
       edtSobrenome.setText(professor.getSobrenome());
       edtIdade.setText(professor.getIdade() != null ? professor.getIdade().toString() : "");
       edtDisciplina.setText(professor.getDisciplina());
-      if (professor.getFoto() != null) {
+
+      if (professor.getFoto() != null && !professor.getFoto().isEmpty()) {
         Glide.with(this).load(professor.getFoto()).into(imgPerfil);
+      } else {
+        imgPerfil.setImageResource(R.drawable.baseline_add_a_photo_24);
       }
+
+    }else{
+      imgPerfil.setImageResource(R.drawable.baseline_add_a_photo_24);
     }
+
+
 
   }
 
@@ -182,6 +190,8 @@ public class PerfilFragment extends Fragment {
         });
 
       }).start();
+
+      sessao.setProfessorLogado(professor);
     }
 
   }

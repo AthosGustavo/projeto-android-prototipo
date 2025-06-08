@@ -43,11 +43,9 @@
         <activity
             android:name=".ui.Activity.TelaPrincipalActivity"
             android:exported="false" />
-        <!--
- <activity
+        <!--<activity
             android:name=".ui.Activity.LoginActivity"
-            android:exported="false" />
-        -->
+            android:exported="false" />-->
         <activity
             android:name=".ui.Activity.TreinamentoVideoActivity"
             android:exported="false" />

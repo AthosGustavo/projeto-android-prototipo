@@ -6,15 +6,43 @@
     android:radius="12dp"
     >
 
-    <TextView
-        android:id="@+id/nome"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="@color/black"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        android:maxLines="1"
-        android:ellipsize="end"
-        android:padding="5dp"
-        />
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/nome"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:padding="5dp"
+            />
+
+        <TextView
+            android:id="@+id/periodo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:padding="5dp" />
+
+        <TextView
+            android:id="@+id/codigo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:padding="5dp" />
+
+
+
+    </LinearLayout>
 </com.google.android.material.card.MaterialCardView>

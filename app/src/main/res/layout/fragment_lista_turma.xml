@@ -8,15 +8,6 @@
     android:background="#F5F8FB"
     tools:context=".ui.Activity.TurmaActivity">
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/card_lista_turma"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:layout_alignParentTop="true"
-        app:cardElevation="4dp"
-        app:cardCornerRadius="12dp"
-        app:cardBackgroundColor="@android:color/white">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_view_lista_turma"
@@ -25,7 +16,7 @@
             android:padding="8dp"
             android:clipToPadding="false"
             tools:listitem="@layout/item_turma" />
-    </androidx.cardview.widget.CardView>
+
 
     <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
         android:id="@+id/btn_criar_turma"

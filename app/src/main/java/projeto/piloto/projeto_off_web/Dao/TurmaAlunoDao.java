@@ -1,5 +1,6 @@
 package projeto.piloto.projeto_off_web.Dao;
 
+import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Insert;
 import androidx.room.Query;
@@ -17,6 +18,9 @@ public interface TurmaAlunoDao {
 
   @Insert
   void inserir(TurmaAluno turmaAluno);
+
+  @Query("SELECT * FROM turmasAlunos WHERE turma = :id")
+  List<TurmaAluno> buscarTurmaAlunosPorId(Integer id);
 
 
 }

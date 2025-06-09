@@ -201,7 +201,7 @@ public class PerfilFragment extends Fragment {
             // Atualizar a UI
             getActivity().runOnUiThread(() -> {
               sessao.setProfessorLogado(novoProfessor);
-              //Util.exibirDialogMsg(getContext(), "", "Perfil cadastrado com sucesso. ID: " + id);
+              Util.exibirDialogMsg(getContext(),"","Perfil atualizado com sucesso.");
             });
           } else {
             getActivity().runOnUiThread(() -> {

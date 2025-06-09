@@ -98,13 +98,16 @@ public class ListaTurmaFragment extends Fragment {
   public void onResume() {
     super.onResume();
     new Thread(() -> {
-      List<Turma> turmas = offWebDb.turmaDao().buscarTurmasPorProfessor(sessao.getProfessorLogado().getId());
-      requireActivity().runOnUiThread(() -> {
-        if(Objects.nonNull(listaTurmaAdapter)){
-          listaTurmaAdapter.atualizar(turmas); // Atualiza a lista e notifica o adapter
-        }
+      if(Objects.nonNull(sessao.getProfessorLogado())){
+        List<Turma> turmas = offWebDb.turmaDao().buscarTurmasPorProfessor(sessao.getProfessorLogado().getId());
+        requireActivity().runOnUiThread(() -> {
+          if(Objects.nonNull(listaTurmaAdapter)){
+            listaTurmaAdapter.atualizar(turmas); // Atualiza a lista e notifica o adapter
+          }
 
-      });
+        });
+      }
+
     }).start();
   }
 
